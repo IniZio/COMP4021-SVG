@@ -1,0 +1,15 @@
+{
+  "name": "comp4021-svg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:IniZio/COMP4021-SVG.git",
+  "author": "inizio <newman.kcchow@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "./node_modules/.bin/parcel src/index.html -p 8080",
+    "build": "./node_modules/.bin/parcel build src/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.7.0"
+  }
+}
