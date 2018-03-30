@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "parcel-bundler": "^1.7.0"
+  },
+  "dependencies": {
+    "svg.js": "^2.6.4"
   }
 }
