@@ -14,10 +14,6 @@ class GameManager {
     return this
   }
 
-  context (name) {
-    return SVG.get(name)
-  }
-
   // Resets scene to empty
   reset () {
     const emptyClone = SVG.adopt(document.getElementById(this.$empty).cloneNode(true))
