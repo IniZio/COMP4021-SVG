@@ -1,3 +1,6 @@
-import GameManager from './game-manager'
+import GameManager from './primitives/game-manager'
 
-new GameManager().init(SVG.get('main'))
+new GameManager({
+  el: 'main',
+  empty: 'empty'
+}).mount('app')
