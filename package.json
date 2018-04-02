@@ -13,6 +13,7 @@
     "parcel-bundler": "^1.7.0"
   },
   "dependencies": {
+    "auto-bind": "^1.2.0",
     "svg.js": "^2.6.4"
   }
 }
