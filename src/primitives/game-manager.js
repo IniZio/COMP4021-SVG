@@ -1,3 +1,4 @@
+import autoBind from 'auto-bind'
 import SVG from 'svg.js'
 
 class GameManager {
@@ -8,19 +9,41 @@ class GameManager {
     }
 
     this.$el = el
-    this.$empty = empty
+    this.$generators = {}
     this.gameObjects = []
 
+    // animation frame compatibility
+    if (!window.requestAnimFrame) {
+      window.requestAnimFrame = (function () {
+  		  return (
+          window.requestAnimationFrame
+  			  || window.webkitRequestAnimationFrame
+  				|| window.mozRequestAnimationFrame
+  			  || window.oRequestAnimationFrame
+  				|| window.msRequestAnimationFrame
+  			  || function (callback) {
+            window.setTimeout(callback, 1000 / 120);
+  			  }
+        )})()
+    }
+
+    autoBind(this)
     return this
   }
 
-  // Resets scene to empty
-  reset () {
-    const emptyClone = SVG.adopt(document.getElementById(this.$empty).cloneNode(true))
+  // Resets scene
+  reset (scene = 'game') {
+    // Static template
+    this.scene = scene
+    const emptyClone = SVG.adopt(document.getElementById(this.scene).cloneNode(true))
     emptyClone.attr('id', SVG.get(this.$el).attr('id'))
 
+    // Replace existing scene with new one
     SVG.get(this.$el).remove()
     SVG.get(this.$context).add(emptyClone)
+
+    // Dynamic generator
+    this.$generators[this.scene](this)
   }
 
   mount (context) {
@@ -28,13 +51,28 @@ class GameManager {
 
     this.reset()
 
-    (function gameLoop (){
-      this.update()
-    })()
+    // NOTE: do not delete the semi-colon
+    const manager = this;
+
+    (function gameLoop (ms) {
+      if (this.$lastUpdate) {
+        this.update((ms - this.$lastUpdate) / 1000)
+      }
+
+      this.$lastUpdate = ms
+
+      this.$frame = requestAnimFrame(gameLoop.bind(manager))
+    }.bind(manager))()
   }
 
-  update () {
-    this.gameObjects.map(object => object.update && object.update())
+  update (dt) {
+    this.gameObjects.map(object => object.update && object.update(dt))
+  }
+
+  addGameObject (gameObj) {
+    gameObj.init({gameManager: this})
+    this.gameObjects.push(gameObj)
+    SVG.get(this.$el).add(gameObj.svg)
   }
 }
 

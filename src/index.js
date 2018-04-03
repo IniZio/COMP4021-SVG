@@ -1,6 +1,6 @@
-import GameManager from './primitives/game-manager'
+import BubbleManager from './overrides/bubble-manager'
 
-new GameManager({
+new BubbleManager({
   el: 'main',
   empty: 'empty'
 }).mount('app')
