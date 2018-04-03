@@ -12,6 +12,7 @@ export class Edible extends GameObject {
      * @param y The y position of the new Edible object.
      */
     constructor(svgObj, x, y) {
+        super();
         //TODO implement
         this.svgObj = svgObj;
     }
@@ -33,5 +34,13 @@ export class Edible extends GameObject {
         throw new Error(
             "Function GameObject.update is not implemented."
         );
+    }
+
+    get center(){
+        return this.svgObj.center;
+    }
+
+    get TypeName(){
+        return 'Edible';
     }
 };

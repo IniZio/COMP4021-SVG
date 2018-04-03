@@ -1,7 +1,9 @@
 import SvgObject from 'svgObject'
+import GameObject from "../primitives/game-object";
 
-export class Player {
+export class Player extends GameObject {
     constructor(svgObj) {
+        super();
         this.svgobj = svgObj;
         this.speedMultiplier = 1;
         this.size = 1;
@@ -23,8 +25,9 @@ export class Player {
         return this.speedMultiplier / this.size;
     }
 
-    move(direction) {
-        switch (direction) {
+    move() {
+        switch (this.nextMoveDirection) {
+            //TODO Implement moving according to speed
             case 'w':
                 break;
             case 's':
@@ -36,7 +39,7 @@ export class Player {
             default:
                 break;
         }
-
+        this.nextMoveDirection = '';
     }
 
     scheduleMove(direction) {
@@ -44,10 +47,13 @@ export class Player {
     }
 
     /**
-     * 
+     * Test if the player can eat the edible object.
+     * If yes, the player will trigger eat function of the edible.
+     *
      * @param edible Edible object to be tested.
      */
     tryEat(edible) {
+        //TODO Adjust eating trigger distance here
 
     }
 
@@ -65,5 +71,18 @@ export class Player {
      */
     gainSize(amount) {
         this.size += amount / 100;
+    }
+
+    /**
+     * Get coordinate of center point of the GameObject
+     *
+     * @returns {x:number, y:number} The position of the GameObject's center point.
+     */
+    get center() {
+        return this.svgobj.center;
+    }
+
+    get TypeName() {
+        return 'Player';
     }
 };

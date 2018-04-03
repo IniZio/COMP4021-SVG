@@ -1,4 +1,3 @@
-
 /**
  * SvgObject handles SVG manipulations.
  */
@@ -56,6 +55,13 @@ export class SvgObject {
 
         this.domNode.style.transition = "transform " + transformDelay + " " + transformTime + "";
         this.domNode.style.transform = "translate(" + translateX + "px, " + translateY + "px) scale(" + scaleX + ", " + scaleY + ")";
+    }
+
+    get center() {
+        return {
+            x: (this.SizeX / 2) + this.x,
+            y: (this.SizeY / 2) + this.y
+        };
     }
 
     get TypeName() {

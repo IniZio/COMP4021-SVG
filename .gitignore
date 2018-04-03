@@ -64,3 +64,5 @@ typings/
 # parcel
 .cache
 dist
+
+package-lock\.json
