@@ -86,42 +86,42 @@ class GameManager {
     SVG.get(this.$el).add(gameObj.svg)
   }
 
-  playMusicStarting(){
-    if (typeof this.startingMusic.loop == 'boolean')
-    {
-      this.startingMusic.loop = true;
-    }
-    else
-    {
+//  playMusicStarting(){
+//    if (typeof this.startingMusic.loop == 'boolean')
+//    {
+//      this.startingMusic.loop = true;
+//    }
+//    else
+//    {
 //      this.startingMusic.addEventListener('ended', function() {
 //        this.currentTime = 0;
 //        this.play();
 //      }, false);
-    }
-    this.startingMusic.pause();
-    this.startingMusic.currentTime = 0;
-    this.startingMusic.play();
-  }
-
-  playMusicPlaying(){
-	this.startingMusic.pause();
-	this.startingMusic.currentTime = 0;
-
-    if (typeof this.playingMusic.loop == 'boolean')
-    {
-      this.playingMusic.loop = true;
-    }
-    else
-    {
+//    }
+//    this.startingMusic.pause();
+//    this.startingMusic.currentTime = 0;
+//    this.startingMusic.play();
+//  }
+//
+//  playMusicPlaying(){
+//	this.startingMusic.pause();
+//	this.startingMusic.currentTime = 0;
+//
+//    if (typeof this.playingMusic.loop == 'boolean')
+//    {
+//      this.playingMusic.loop = true;
+//    }
+//    else
+//    {
 //      this.playingMusic.addEventListener('ended', function() {
 //        this.currentTime = 0;
 //        this.play();
 //      }, false);
-    }
-    this.playingMusic.pause();
-    this.playingMusic.currentTime = 0;
-    this.playingMusic.play();
-  }
+//    }
+//    this.playingMusic.pause();
+//    this.playingMusic.currentTime = 0;
+//    this.playingMusic.play();
+//  }
 
   playMusicGameOver(){
     this.startingMusic.pause();
