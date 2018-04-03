@@ -79,13 +79,13 @@ class GameManager {
     SVG.get(this.$el).add(gameObj.svg)
   }
   
-  var startingMusic = new Audio('../sound/starting_screen_sound.MP3');
-  var playingMusic = new Audio('../sound/game_play_sound.MP3');
-  var gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
-  var foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
-  var foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
-  var boosterMusic = new Audio('../sound/booster_5sec.MP3');
-  var bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
+  this.startingMusic = new Audio('../sound/starting_screen_sound.MP3');
+  this.playingMusic = new Audio('../sound/game_play_sound.MP3');
+  this.gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
+  this.foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
+  this.foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
+  this.boosterMusic = new Audio('../sound/booster_5sec.MP3');
+  this.bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
 
   function playMusicStarting(){
     if (typeof startingMusic.loop == 'boolean')
