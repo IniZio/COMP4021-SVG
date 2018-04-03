@@ -93,10 +93,10 @@ class GameManager {
     }
     else
     {
-      this.startingMusic.addEventListener('ended', function() {
-      this.currentTime = 0;
-      this.play();
-      }, false);
+//      this.startingMusic.addEventListener('ended', function() {
+//        this.currentTime = 0;
+//        this.play();
+//      }, false);
     }
     this.startingMusic.pause();
     this.startingMusic.currentTime = 0;
@@ -113,10 +113,10 @@ class GameManager {
     }
     else
     {
-      this.playingMusic.addEventListener('ended', function() {
-      this.currentTime = 0;
-      this.play();
-      }, false);
+//      this.playingMusic.addEventListener('ended', function() {
+//        this.currentTime = 0;
+//        this.play();
+//      }, false);
     }
     this.playingMusic.pause();
     this.playingMusic.currentTime = 0;
