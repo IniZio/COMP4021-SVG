@@ -1,6 +1,10 @@
+import autoBind from 'auto-bind'
+
 class GameObject {
     constructor(opt) {
         Object.assign(this, opt)
+        autoBind(this)
+        return this
     }
 
     init({gameManager}) {

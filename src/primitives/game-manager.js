@@ -32,7 +32,7 @@ class GameManager {
   }
 
   // Resets scene
-  reset (scene = 'game') {
+  reset (scene = 'welcome') {
     // Static template
     this.scene = scene
     const emptyClone = SVG.adopt(document.getElementById(this.scene).cloneNode(true))
