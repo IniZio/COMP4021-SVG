@@ -11,10 +11,12 @@ import GameObject from '../primitives/game-object'
      * @param x The x position of the new Edible object.
      * @param y The y position of the new Edible object.
      */
-    constructor(svgObj, x, y) {
+    constructor(svgObj, x, y, selfDestructTime) {
         super();
         //TODO implement
         this.svgObj = svgObj;
+        this.selfDestructTime = selfDestructTime;
+        this.selfDestructTimer = 0;
     }
 
     /**
@@ -27,17 +29,25 @@ import GameObject from '../primitives/game-object'
      * @param player Player object eating this Edible object.
      */
     eatenBy(player) {
+        if (player === null){
+            //TODO self destruction
+        }
         throw new Error("Function Edible.eatenBy is not implemented");
     }
 
-    update() {
+    update(frameTime) {
+        this.selfDestructTimer += frameTime;
+        if (this.selfDestructTimer >= this.selfDestructTime){
+            //TODO: self destruction
+            eatenBy(null);
+        }
     }
 
     get center(){
         return this.svgObj.center;
     }
 
-    get TypeName(){
+    static get TypeName(){
         return 'Edible';
     }
 };

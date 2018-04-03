@@ -1,3 +1,4 @@
+import SvgObject from 'svgObject'
 import Edible from 'edible'
 
 export class SpeedBooster extends Edible {
@@ -20,11 +21,11 @@ export class SpeedBooster extends Edible {
         this.svgObj.domNode.remove();
     }
 
-    update() {
-
+    update(frameTime) {
+        super.update(frameTime);
     }
 
-    get center(){
+    get center() {
         return this.svgObj.center;
     }
 

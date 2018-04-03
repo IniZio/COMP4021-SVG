@@ -20,11 +20,15 @@ export class Food extends Edible {
         palyer.grow(this.gain);
     }
 
-    update() {
-
+    update(frameTime) {
+        super.update(frameTime);
     }
 
-    get TypeName() {
+    get center(){
+        return this.svgObj.center;
+    }
+
+    static get TypeName() {
         return 'Food';
     }
 }

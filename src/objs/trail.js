@@ -18,7 +18,8 @@ export class Trail extends Edible {
         //TODO: Eaten by player
     }
 
-    update() {
+    update(frameTime) {
+        super.update(frameTime);
     }
 
     get center(){

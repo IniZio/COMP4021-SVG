@@ -5,9 +5,13 @@ class SvgObject {
     /**
      * Constructs a SvgObject from a SVG element.
      * @param domNode The SVG element.
+     * @param svgX
+     * @param svgY
+     * @param svgSizeX
+     * @param svgSizeY
      */
     constructor(domNode, svgX, svgY, svgSizeX, svgSizeY) {
-        if (domNode.TypeName == 'SvgObject') {
+        if (domNode.TypeName && domNode.TypeName === 'SvgObject') {
             // Copy Constructor
             svgObj = domNode;
             this.domNode = svgObj.domNode.cloneNode();
@@ -48,10 +52,10 @@ class SvgObject {
      * @param transformTime String of time of animation duration.
      */
     transform(transformDelay, transformTime) {
-        var translateX = this.x - this.svgX;
-        var translateY = this.y - this.svgY;
-        var scaleX = this.sizeX / this.svgSizeX;
-        var scaleY = this.sizeY / this.svgSizeY;
+        let translateX = this.x - this.svgX;
+        let translateY = this.y - this.svgY;
+        let scaleX = this.sizeX / this.svgSizeX;
+        let scaleY = this.sizeY / this.svgSizeY;
 
         this.domNode.style.transition = "transform " + transformDelay + " " + transformTime + "";
         this.domNode.style.transform = "translate(" + translateX + "px, " + translateY + "px) scale(" + scaleX + ", " + scaleY + ")";
@@ -69,7 +73,7 @@ class SvgObject {
         };
     }
 
-    get TypeName() {
+    static get TypeName() {
         return 'SvgObject';
     }
 };

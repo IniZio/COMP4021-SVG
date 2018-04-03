@@ -95,16 +95,20 @@ class Player extends GameObject {
 
     }
 
+    update(frameTime) {
+
+    }
+
     /**
      * Get coordinate of center point of the GameObject
      *
-     * @returns {x:number, y:number} The position of the GameObject's center point.
+     * @returns {{x: *, y: *}} The position of the GameObject's center point.
      */
     get center() {
         return this.svgObj.center;
     }
 
-    get TypeName() {
+    static get TypeName() {
         return 'Player';
     }
 };
