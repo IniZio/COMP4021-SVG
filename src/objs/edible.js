@@ -4,7 +4,7 @@ import GameObject from '../primitives/game-object'
 /**
  * Edible object is a
  */
-export class Edible extends GameObject {
+ class Edible extends GameObject {
     /**
      * Constructs an edible object.
      * @param svgObj The SvgObject handling the display of this object.
@@ -31,9 +31,6 @@ export class Edible extends GameObject {
     }
 
     update() {
-        throw new Error(
-            "Function GameObject.update is not implemented."
-        );
     }
 
     get center(){
@@ -44,3 +41,5 @@ export class Edible extends GameObject {
         return 'Edible';
     }
 };
+
+ export default Edible;

@@ -1,10 +1,10 @@
 import SvgObject from 'svgObject'
 import GameObject from "../primitives/game-object";
 
-export class Player extends GameObject {
+class Player extends GameObject {
     constructor(svgObj) {
         super();
-        this.svgobj = svgObj;
+        this.svgObj = svgObj;
         this.speedMultiplier = 1;
         this.size = 1;
     }
@@ -17,7 +17,7 @@ export class Player extends GameObject {
 
     /**
      * Speed Getter
-     * 
+     *
      * @returns Calculated speed of the player, 1 is normal speed, larger means faster.
      */
     get speed() {
@@ -27,18 +27,27 @@ export class Player extends GameObject {
 
     move() {
         switch (this.nextMoveDirection) {
-            //TODO Implement moving according to speed
+            //TODO Adjust player speed here!
             case 'w':
+                svgObj.y += 1 * speedMultiplier;
                 break;
             case 's':
+                svgObj.y -= 1 * speedMultiplier;
                 break;
             case 'a':
+                svgObj.x -= 1 * speedMultiplier;
                 break;
             case 'd':
+                svgObj.x += 1 * speedMultiplier;
                 break;
             default:
                 break;
         }
+        this.svgObj.transform(0, 0.025);
+        this.nextMoveDirection = '';
+    }
+
+    clearMove() {
         this.nextMoveDirection = '';
     }
 
@@ -54,7 +63,13 @@ export class Player extends GameObject {
      */
     tryEat(edible) {
         //TODO Adjust eating trigger distance here
+        a = edible.center.x - this.center.x;
+        b = edible.center.y - this.center.y;
 
+        distance = Math.sqrt(a * a + b * b);
+        if (distance <= this.svgObj.sizeX / 2) {
+            edible.eatenBy(player);
+        }
     }
 
     boostSpeed(speedMultiplier) {
@@ -66,11 +81,18 @@ export class Player extends GameObject {
 
     /**
      * Give size growth to player
-     * 
+     *
      * @param amount Amount of size a player gain. 100 is the player's initial size.
      */
-    gainSize(amount) {
+    grow(amount) {
         this.size += amount / 100;
+        this.svgObj.sizeX = this.svgObj.svgSizeX * this.size;
+        this.svgObj.sizeY = this.svgObj.svgSizeX * this.size;
+        this.svgObj.transform(0, 0.025);
+    }
+
+    putTrail() {
+
     }
 
     /**
@@ -79,10 +101,12 @@ export class Player extends GameObject {
      * @returns {x:number, y:number} The position of the GameObject's center point.
      */
     get center() {
-        return this.svgobj.center;
+        return this.svgObj.center;
     }
 
     get TypeName() {
         return 'Player';
     }
 };
+
+export default Player;

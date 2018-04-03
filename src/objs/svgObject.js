@@ -1,7 +1,7 @@
 /**
  * SvgObject handles SVG manipulations.
  */
-export class SvgObject {
+class SvgObject {
     /**
      * Constructs a SvgObject from a SVG element.
      * @param domNode The SVG element.
@@ -57,6 +57,11 @@ export class SvgObject {
         this.domNode.style.transform = "translate(" + translateX + "px, " + translateY + "px) scale(" + scaleX + ", " + scaleY + ")";
     }
 
+    /**
+     * Getter of the center point of the SvgObject
+     *
+     * @returns {{x: *, y: *}} Center coordinate of the SvgObject
+     */
     get center() {
         return {
             x: (this.SizeX / 2) + this.x,
@@ -68,3 +73,5 @@ export class SvgObject {
         return 'SvgObject';
     }
 };
+
+export default SvgObject;
