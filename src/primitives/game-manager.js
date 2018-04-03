@@ -87,7 +87,7 @@ class GameManager {
   this.boosterMusic = new Audio('../sound/booster_5sec.MP3');
   this.bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
 
-  function playMusicStarting(){
+  playMusicStarting(){
     if (typeof startingMusic.loop == 'boolean')
     {
       startingMusic.loop = true;
@@ -104,7 +104,7 @@ class GameManager {
     startingMusic.play();
   }
 
-  function playMusicPlaying(){
+  playMusicPlaying(){
     startingMusic.pause();
     startingMusic.currentTime = 0;
 
@@ -124,7 +124,7 @@ class GameManager {
     playingMusic.play();
   }
 
-  function playMusicGameOver(){
+  playMusicGameOver(){
     startingMusic.pause();
     startingMusic.currentTime = 0;
     playingMusic.pause();
@@ -139,25 +139,25 @@ class GameManager {
     gameOverMusic.play();
   }
 
-  function playMusicFoodAppear(){
+  playMusicFoodAppear(){
     foodAppearMusic.pause();
     foodAppearMusic.currentTime = 0;
     foodAppearMusic.play();
   }
 
-  function playMusicFoodEating(){
+  playMusicFoodEating(){
     foodEatingMusic.pause();
     foodEatingMusic.currentTime = 0;
     foodEatingMusic.play();
   }
 
-  function playMusicBangWall(){
+  playMusicBangWall(){
     bangWallMusic.pause();
     bangWallMusic.currentTime = 0;
     bangWallMusic.play();
   }
 
-  function playMusicBooster(){
+  playMusicBooster(){
     boosterMusic.pause();
     boosterMusic.currentTime = 0;
     boosterMusic.play();
