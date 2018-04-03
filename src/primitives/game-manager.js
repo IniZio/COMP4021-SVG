@@ -87,79 +87,79 @@ class GameManager {
   }
 
   playMusicStarting(){
-    if (typeof startingMusic.loop == 'boolean')
+    if (typeof this.startingMusic.loop == 'boolean')
     {
-      startingMusic.loop = true;
+      this.startingMusic.loop = true;
     }
     else
     {
-      startingMusic.addEventListener('ended', function() {
+      this.startingMusic.addEventListener('ended', function() {
       this.currentTime = 0;
       this.play();
       }, false);
     }
-    startingMusic.pause();
-    startingMusic.currentTime = 0;
-    startingMusic.play();
+    this.startingMusic.pause();
+    this.startingMusic.currentTime = 0;
+    this.startingMusic.play();
   }
 
   playMusicPlaying(){
-    startingMusic.pause();
-    startingMusic.currentTime = 0;
+	this.startingMusic.pause();
+	this.startingMusic.currentTime = 0;
 
-    if (typeof playingMusic.loop == 'boolean')
+    if (typeof this.playingMusic.loop == 'boolean')
     {
-      playingMusic.loop = true;
+      this.playingMusic.loop = true;
     }
-      else
+    else
     {
-      playingMusic.addEventListener('ended', function() {
+      this.playingMusic.addEventListener('ended', function() {
       this.currentTime = 0;
       this.play();
       }, false);
     }
-    playingMusic.pause();
-    playingMusic.currentTime = 0;
-    playingMusic.play();
+    this.playingMusic.pause();
+    this.playingMusic.currentTime = 0;
+    this.playingMusic.play();
   }
 
   playMusicGameOver(){
-    startingMusic.pause();
-    startingMusic.currentTime = 0;
-    playingMusic.pause();
-    playingMusic.currentTime = 0;
-    BangWall.pause();
-    BangWall.currentTime = 0;
-    Booster.pause();
-    Booster.currentTime = 0;
+    this.startingMusic.pause();
+    this.startingMusic.currentTime = 0;
+    this.playingMusic.pause();
+    this.playingMusic.currentTime = 0;
+    this.BangWall.pause();
+    this.BangWall.currentTime = 0;
+    this.Booster.pause();
+    this.Booster.currentTime = 0;
 
-    gameOverMusic.pause();
-    gameOverMusic.currentTime = 0;
-    gameOverMusic.play();
+    this.gameOverMusic.pause();
+    this.gameOverMusic.currentTime = 0;
+    this.gameOverMusic.play();
   }
 
   playMusicFoodAppear(){
-    foodAppearMusic.pause();
-    foodAppearMusic.currentTime = 0;
-    foodAppearMusic.play();
+    this.foodAppearMusic.pause();
+    this.foodAppearMusic.currentTime = 0;
+    this.foodAppearMusic.play();
   }
 
   playMusicFoodEating(){
-    foodEatingMusic.pause();
-    foodEatingMusic.currentTime = 0;
-    foodEatingMusic.play();
+    this.foodEatingMusic.pause();
+    this.foodEatingMusic.currentTime = 0;
+    this.foodEatingMusic.play();
   }
 
   playMusicBangWall(){
-    bangWallMusic.pause();
-    bangWallMusic.currentTime = 0;
-    bangWallMusic.play();
+    this.bangWallMusic.pause();
+    this.bangWallMusic.currentTime = 0;
+    this.bangWallMusic.play();
   }
 
   playMusicBooster(){
-    boosterMusic.pause();
-    boosterMusic.currentTime = 0;
-    boosterMusic.play();
+    this.boosterMusic.pause();
+    this.boosterMusic.currentTime = 0;
+    this.boosterMusic.play();
   }
 }
 
