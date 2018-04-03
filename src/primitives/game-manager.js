@@ -7,6 +7,13 @@ class GameManager {
       alert('SVG not supported')
       return
     }
+    this.startingMusic = new Audio('../sound/starting_screen_sound.MP3');
+    this.playingMusic = new Audio('../sound/game_play_sound.MP3');
+    this.gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
+    this.foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
+    this.foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
+    this.boosterMusic = new Audio('../sound/booster_5sec.MP3');
+    this.bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
 
     this.$el = el
     this.$generators = {}
@@ -78,14 +85,6 @@ class GameManager {
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
   }
-  
-  this.startingMusic = new Audio('../sound/starting_screen_sound.MP3');
-  this.playingMusic = new Audio('../sound/game_play_sound.MP3');
-  this.gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
-  this.foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
-  this.foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
-  this.boosterMusic = new Audio('../sound/booster_5sec.MP3');
-  this.bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
 
   playMusicStarting(){
     if (typeof startingMusic.loop == 'boolean')
