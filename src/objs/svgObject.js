@@ -7,7 +7,25 @@ export class SvgObject {
      * Constructs a SvgObject from a SVG element.
      * @param domNode The SVG element.
      */
-    constructor(domNode) {
+    constructor(domNode, svgX, svgY, svgSizeX, svgSizeY) {
+        if (domNode.TypeName == 'SvgObject') {
+            // Copy Constructor
+            svgObj = domNode;
+            this.domNode = svgObj.domNode.cloneNode();
+            svgObj.domNode.insertBefore(this.domNode);
+            this.svgX = svgObj.svgX;
+            this.svgY = svgObj.svgY;
+            this.svgSizeX = svgObj.svgSizeX;
+            this.svgSizeY = svgObj.svgSizeY;
+
+            this.x = svgObj.svgX;
+            this.y = svgObj.svgY;
+            this.sizeX = svgObj.svgSizeX;
+            this.sizeY = svgObj.svgSizeY;
+            return
+        }
+
+        // Convert SVG DOM node to SvgObject
         this.domNode = domNode;
 
         this.svgX = svgX;
@@ -38,5 +56,9 @@ export class SvgObject {
 
         this.domNode.style.transition = "transform " + transformDelay + " " + transformTime + "";
         this.domNode.style.transform = "translate(" + translateX + "px, " + translateY + "px) scale(" + scaleX + ", " + scaleY + ")";
+    }
+
+    get TypeName() {
+        return 'SvgObject';
     }
 };

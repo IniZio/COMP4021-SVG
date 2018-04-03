@@ -1,10 +1,10 @@
 import SvgObject from 'svgObject'
-
+import GameObject from '../primitives/game-object'
 
 /**
  * Edible object is a
  */
-export class Edible {
+export class Edible extends GameObject {
     /**
      * Constructs an edible object.
      * @param svgObj The SvgObject handling the display of this object.
@@ -27,5 +27,11 @@ export class Edible {
      */
     eatenBy(player) {
         throw new Error("Function Edible.eatenBy is not implemented");
+    }
+
+    update() {
+        throw new Error(
+            "Function GameObject.update is not implemented."
+        );
     }
 };

@@ -5,4 +5,8 @@ export class SpeedBooster extends Edible {
         super(x, y);
 
     }
+
+    get TypeName() {
+        return 'SpeedBooster';
+    }
 };

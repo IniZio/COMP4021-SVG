@@ -6,4 +6,8 @@ export class Food extends Edible {
         super(x, y);
 
     }
+
+    get TypeName() {
+        return 'Food';
+    }
 }
