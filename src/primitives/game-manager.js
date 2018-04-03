@@ -78,6 +78,90 @@ class GameManager {
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
   }
+  
+  var startingMusic = new Audio('../sound/starting_screen_sound.MP3');
+  var playingMusic = new Audio('../sound/game_play_sound.MP3');
+  var gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
+  var foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
+  var foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
+  var boosterMusic = new Audio('../sound/booster_5sec.MP3');
+  var bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
+
+  function playMusicStarting(){
+    if (typeof startingMusic.loop == 'boolean')
+    {
+      startingMusic.loop = true;
+    }
+    else
+    {
+      startingMusic.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+      }, false);
+    }
+    startingMusic.pause();
+    startingMusic.currentTime = 0;
+    startingMusic.play();
+  }
+
+  function playMusicPlaying(){
+    startingMusic.pause();
+    startingMusic.currentTime = 0;
+
+    if (typeof playingMusic.loop == 'boolean')
+    {
+      playingMusic.loop = true;
+    }
+      else
+    {
+      playingMusic.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+      }, false);
+    }
+    playingMusic.pause();
+    playingMusic.currentTime = 0;
+    playingMusic.play();
+  }
+
+  function playMusicGameOver(){
+    startingMusic.pause();
+    startingMusic.currentTime = 0;
+    playingMusic.pause();
+    playingMusic.currentTime = 0;
+    BangWall.pause();
+    BangWall.currentTime = 0;
+    Booster.pause();
+    Booster.currentTime = 0;
+
+    gameOverMusic.pause();
+    gameOverMusic.currentTime = 0;
+    gameOverMusic.play();
+  }
+
+  function playMusicFoodAppear(){
+    foodAppearMusic.pause();
+    foodAppearMusic.currentTime = 0;
+    foodAppearMusic.play();
+  }
+
+  function playMusicFoodEating(){
+    foodEatingMusic.pause();
+    foodEatingMusic.currentTime = 0;
+    foodEatingMusic.play();
+  }
+
+  function playMusicBangWall(){
+    bangWallMusic.pause();
+    bangWallMusic.currentTime = 0;
+    bangWallMusic.play();
+  }
+
+  function playMusicBooster(){
+    boosterMusic.pause();
+    boosterMusic.currentTime = 0;
+    boosterMusic.play();
+  }
 }
 
 export default GameManager
