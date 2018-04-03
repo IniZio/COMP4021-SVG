@@ -10,6 +10,7 @@ class GameManager {
 
     this.$el = el
     this.$generators = {}
+    this.$intervals = []
     this.gameObjects = []
 
     // animation frame compatibility
@@ -33,6 +34,9 @@ class GameManager {
 
   // Resets scene
   reset (scene = 'welcome') {
+    // Kill schedulers
+    this.$intervals.map(clearInterval)
+
     // Static template
     this.scene = scene
     const emptyClone = SVG.adopt(document.getElementById(this.scene).cloneNode(true))

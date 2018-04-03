@@ -3,6 +3,8 @@ import autoBind from 'auto-bind'
 class GameObject {
     constructor(opt) {
         Object.assign(this, opt)
+        this.svg.move(this.x, this.y)
+
         autoBind(this)
         return this
     }
