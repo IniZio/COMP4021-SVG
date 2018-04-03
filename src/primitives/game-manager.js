@@ -122,45 +122,45 @@ class GameManager {
 //    this.playingMusic.currentTime = 0;
 //    this.playingMusic.play();
 //  }
-
-  playMusicGameOver(){
-    this.startingMusic.pause();
-    this.startingMusic.currentTime = 0;
-    this.playingMusic.pause();
-    this.playingMusic.currentTime = 0;
-    this.BangWall.pause();
-    this.BangWall.currentTime = 0;
-    this.Booster.pause();
-    this.Booster.currentTime = 0;
-
-    this.gameOverMusic.pause();
-    this.gameOverMusic.currentTime = 0;
-    this.gameOverMusic.play();
-  }
-
-  playMusicFoodAppear(){
-    this.foodAppearMusic.pause();
-    this.foodAppearMusic.currentTime = 0;
-    this.foodAppearMusic.play();
-  }
-
-  playMusicFoodEating(){
-    this.foodEatingMusic.pause();
-    this.foodEatingMusic.currentTime = 0;
-    this.foodEatingMusic.play();
-  }
-
-  playMusicBangWall(){
-    this.bangWallMusic.pause();
-    this.bangWallMusic.currentTime = 0;
-    this.bangWallMusic.play();
-  }
-
-  playMusicBooster(){
-    this.boosterMusic.pause();
-    this.boosterMusic.currentTime = 0;
-    this.boosterMusic.play();
-  }
+//
+//  playMusicGameOver(){
+//    this.startingMusic.pause();
+//    this.startingMusic.currentTime = 0;
+//    this.playingMusic.pause();
+//    this.playingMusic.currentTime = 0;
+//    this.BangWall.pause();
+//    this.BangWall.currentTime = 0;
+//    this.Booster.pause();
+//    this.Booster.currentTime = 0;
+//
+//    this.gameOverMusic.pause();
+//    this.gameOverMusic.currentTime = 0;
+//    this.gameOverMusic.play();
+//  }
+//
+//  playMusicFoodAppear(){
+//    this.foodAppearMusic.pause();
+//    this.foodAppearMusic.currentTime = 0;
+//    this.foodAppearMusic.play();
+//  }
+//
+//  playMusicFoodEating(){
+//    this.foodEatingMusic.pause();
+//    this.foodEatingMusic.currentTime = 0;
+//    this.foodEatingMusic.play();
+//  }
+//
+//  playMusicBangWall(){
+//    this.bangWallMusic.pause();
+//    this.bangWallMusic.currentTime = 0;
+//    this.bangWallMusic.play();
+//  }
+//
+//  playMusicBooster(){
+//    this.boosterMusic.pause();
+//    this.boosterMusic.currentTime = 0;
+//    this.boosterMusic.play();
+//  }
 }
 
 export default GameManager
