@@ -13,13 +13,14 @@
         <!-- Welcome scene -->
         <svg id="welcome">
           <text x="0" y="15" fill="red">Welcome scene</text>
-          <use x="50" y="30" href="#game" />
-          <svg id="play_button" viewBox="0 0 300 300"
-            preserveAspectRatio="xMaxYMin meet">
-            <g transform="translate(-180)">
-              <polygon points="225,10 100,210 350,210" transform="rotate(10 0 0)" style="fill:rgba(0,0,0,0);stroke:#609AAF;stroke-width:10" />
-            </g>
-          </svg>
+		  <g>
+			  <rect id="starting screen" height="400" width="600" fill="#000000" fill-opacity="0.4"/>
+			  <ellipse id="single_player" ry="30" rx="72" id="svg_3" cy="262.6" cx="179" fill="#00ff7f"/>
+			  <text id="single_player" fill="#000000" x="117" y="270" font-size="20" font-family="serif" font-weight="bold">Single Player</text>
+			  <ellipse id="play_button"  ry="30" rx="72" cy="262.6" cx="414" fill="#00ff7f"/>
+			  <text id="play_button" fill="#000000" x="357" y="270" font-size="20" font-family="serif" font-weight="bold">Multi Player</text>
+			  <text font-weight="bolder" font-family="serif" font-size="100" id="svg_6" y="150" x="300" fill="#000000" text-anchor="middle">Bubble Tail</text>
+ 		  </g>
         </svg>
 
         <!-- Game scene -->
