@@ -87,6 +87,7 @@ class GameManager {
     gameObj.init({gameManager: this})
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
+    this.player1.svg.front()
   }
 
   playMusicStarting() {
