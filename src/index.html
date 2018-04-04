@@ -10,13 +10,13 @@
   <body>
     <div style="display: flex; height: 100vh; width: 100%; box-sizing: border-box; justify-content: center; align-items: center"  xmlns="http://www.w3.org/2000/svg">
       <svg id="app"  height="500" width="1000">
-      	<rect height="500" width="1000" rx="10" ry="10" fill="#eee">
+      	<rect height="500" width="1000" rx="10" ry="10" fill="#eee" stroke="black" stroke-width="3">
       	<svg id="main"></svg>
       </svg>
       <div style="display: none">
         <!-- Welcome scene -->
         <svg id="welcome">
-			<rect id="starting_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4"/>
+			<rect id="starting_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4" stroke="black" stroke-width="3"/>
 			<text id="game_title" text-anchor="middle" fill="black" opacity="0.8" x="500" y="100" font-size="75" font-family="Chicle serif" font-weight="bold">Bubble Tail</text>
 			<g id="game_objective">
 				<rect height="250" width="440" x="40" y="125" rx="10" ry="10" fill="green" opacity="0.3" />
@@ -80,11 +80,11 @@
 				</g>
 			</g>
 			<g id="single_player">
-			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="430" stroke="lightGreen"/>
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="430" />
 			  <text text-anchor="middle" fill="black" opacity="0.8" x="360" y="435" font-size="20" font-family="Chicle serif" font-weight="bold">Single Player</text>
 			</g>
 			<g id="play_button">
-			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="430" stroke="lightGreen"/>
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="430" />
 			  <text text-anchor="middle" fill="black" opacity="0.8" x="640" y="435" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
 			</g>
  		</svg>
@@ -114,25 +114,25 @@
 
         <!-- Game Over scene -->
         <svg id="gameover">
-			<rect id="gameover_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4"/>
+			<rect id="gameover_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4" stroke="black" stroke-width="3"/>
 			<text id="game_over_text" text-anchor="middle" fill="#000000" x="500" y="100" font-size="75" font-family="Chicle serif" font-weight="bolder">Game Over</text>
 			<g> <!-- Score 1 -->
-				<text stroke="#000000" text-anchor="middle" fill="#000000" x="360" y="270" font-size="20" font-family="Chicle serif" font-weight="bolder">Player 1 Score</text>
-				<rect height="40" width="80" x="320" y="280" rx="20" ry="20" fill="#d1fcf8" />
-				<text id="score_1" text-anchor="middle" fill="#000000" x="360" y="305" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="360" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1 Score</text>
+				<rect height="40" width="80" x="320" y="230" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_1" text-anchor="middle" fill="#000000" x="360" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
 			</g>
 			<g> <!-- Score 2 -->
-				<text stroke="#000000" text-anchor="middle" fill="#000000" x="630" y="270" font-size="20" font-family="Chicle serif" font-weight="bolder">Player 2 Score</text>
-				<rect height="40" width="80" x="590" y="280" rx="20" ry="20" fill="#d1fcf8" />
-				<text id="score_2" text-anchor="middle" fill="#000000" x="630" y="305" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="630" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 2 Score</text>
+				<rect height="40" width="80" x="590" y="230" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_2" text-anchor="middle" fill="#000000" x="630" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
 			</g>
 			<g id="restart_button">
-			  <ellipse  fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="400" />
-			  <text text-anchor="middle" fill="#000000" x="360" y="405" font-size="20" font-family="Chicle serif" font-weight="bold">Back to Main</text>
+			  <ellipse  fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="350" />
+			  <text text-anchor="middle" fill="#000000" x="360" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Back to Main</text>
 			</g>
 			<g id="replay_button">
-			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="630" cy="400" />
-			  <text text-anchor="middle" fill="#000000" x="630" y="405" font-size="20" font-family="Chicle serif" font-weight="bold">Play again</text>
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="350" />
+			  <text text-anchor="middle" fill="#000000" x="640" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Play again</text>
 			</g>
  		</svg>
 
