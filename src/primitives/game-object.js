@@ -26,9 +26,9 @@ class GameObject {
      * @returns {{x: *, y: *}} The position of the GameObject's center point.
      */
     get center() {
-        throw new Error(
-            "Function GameObject.center is not implemented."
-        );
+        if (this.svgObj)
+            return this.svgObj.center;
+        return null;
     }
 
     get TypeName() {

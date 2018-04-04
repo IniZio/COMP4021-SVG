@@ -25,8 +25,10 @@ export class Food extends Edible {
         super.update(frameTime);
     }
 
-    get center(){
-        return this.svgObj.center;
+    get center() {
+        if (this.svgObj)
+            return this.svgObj.center;
+        return null;
     }
 
     static get TypeName() {

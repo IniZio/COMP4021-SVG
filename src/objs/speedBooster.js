@@ -27,7 +27,9 @@ class SpeedBooster extends Edible {
     }
 
     get center() {
-        return this.svgObj.center;
+        if (this.svgObj)
+            return this.svgObj.center;
+        return null;
     }
 
     get TypeName() {

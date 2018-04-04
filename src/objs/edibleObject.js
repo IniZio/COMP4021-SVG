@@ -42,8 +42,10 @@ import GameObject from '../primitives/game-object'
         }
     }
 
-    get center(){
-        return this.svgObj.center;
+    get center() {
+        if (this.svgObj)
+            return this.svgObj.center;
+        return null;
     }
 
     static get TypeName(){
