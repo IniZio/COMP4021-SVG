@@ -1,11 +1,11 @@
 import SVGObject from './SVGObject'
 import Edible from './edibleObject'
 
-export class Food extends Edible {
+class Food extends Edible {
     constructor(opt) {
         super(...arguments);
         this.svgObj = new SVGObject(opt.svg, 0, 0, 35, 30);
-        this.gain = opt.gain;
+        this.gain = 10;
     }
 
     /**
@@ -35,3 +35,5 @@ export class Food extends Edible {
         return 'Food';
     }
 }
+
+export default Food;
