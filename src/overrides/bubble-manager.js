@@ -23,9 +23,9 @@ class BubbleManager extends GameManager {
 
         manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
         manager.addGameObject(manager.player1)
-        manager.addEventListener('player1.putTrail', function(){
-
-        })
+        // manager.addEventListener('player1.putTrail', function(){
+        //
+        // })
         document.getElementsByTagName('body')[0].onkeydown = function (e) {
           switch (e.keyCode) {
             case 87:
@@ -98,6 +98,7 @@ class BubbleManager extends GameManager {
       },
       gameover(manager) {
         SVG.get('restart_button').click(() => manager.reset())
+        SVG.get('replay_button').click(() => manager.reset('game'))
       }
     }
   }

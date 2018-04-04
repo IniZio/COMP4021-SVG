@@ -1,60 +1,150 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-  <title></title>
+  <link href="https://fonts.google.com/specimen/Chicle?selection.family=Chicle" rel="stylesheet">
+  <title>Bubble tail</title>
 </head>
+
 <body>
-<div
-    style="display: flex; height: 100vh; width: 100%; box-sizing: border-box; justify-content: center; align-items: center"
-    xmlns="http://www.w3.org/2000/svg">
-  <svg id="app" width="1000" height="500" style='stroke-width: 0px; background-color: #eee;'>
-    <svg id="main"></svg>
-  </svg>
-  <div style="display: none">
-    <!-- Welcome scene -->
-    <svg id="welcome">
-      <text x="0" y="15" fill="red">Welcome scene</text>
-      <use x="50" y="30" href="#game"/>
-      <svg id="play_button" viewBox="0 0 300 300"
-           preserveAspectRatio="xMaxYMin meet">
-        <g transform="translate(-180)">
-          <polygon points="225,10 100,210 350,210" transform="rotate(10 0 0)"
-                   style="fill:rgba(0,0,0,0);stroke:#609AAF;stroke-width:10"/>
-        </g>
+  <div style="display: flex; height: 100vh; width: 100%; box-sizing: border-box; justify-content: center; align-items: center" xmlns="http://www.w3.org/2000/svg">
+    <svg id="app" height="500" width="1000">
+      	<rect height="500" width="1000" rx="10" ry="10" fill="#eee" stroke="black" stroke-width="3">
+      	<svg id="main"></svg>
+    </svg>
+    <div style="display: none">
+      <!-- Welcome scene -->
+      <svg id="welcome">
+			<rect id="starting_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4" stroke="black" stroke-width="3"/>
+			<text id="game_title" text-anchor="middle" fill="black" opacity="0.8" x="500" y="100" font-size="75" font-family="Chicle serif" font-weight="bold">Bubble Tail</text>
+			<g id="game_objective">
+				<rect height="250" width="440" x="40" y="125" rx="10" ry="10" fill="green" opacity="0.3" />
+				<text text-anchor="middle" fill="black" opacity="0.8" x="260" y="150" font-size="20" font-family="Chicle serif" font-weight="bold">Objective</text>
+				<g id="single_objective">
+					<rect height="208" width="205" x="50" y="157" rx="10" ry="10" fill="green" opacity="0.5" />
+					<text fill="black" text-anchor="middle" opacity="0.8" x="152" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Single Player</text>
+					<text fill="black" text-anchor="middle" opacity="0.8" x="152" y="260" font-size="40" font-family="Chicle serif" font-weight="bold">Get</text>
+					<text fill="black" text-anchor="middle" opacity="0.8" x="152" y="310" font-size="40" font-family="Chicle serif" font-weight="bold">BIGGER!</text>
+				</g>
+				<g id="multi_objective">
+					<rect height="208" width="205" x="265" y="157" rx="10" ry="10" fill="green" opacity="0.5" />
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="240" font-size="25" font-family="Chicle serif" font-weight="bold">Get BIGGER</text>							
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="280" font-size="25" font-family="Chicle serif" font-weight="bold">And</text>
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="320" font-size="25" font-family="Chicle serif" font-weight="bold">Eat your ENEMY!</text>							
+				</g>
+			</g>
+			<g id="game_instruction">
+				<rect height="250" width="440" x="520" y="125" rx="10" ry="10" fill="green" opacity="0.3" />
+				<text text-anchor="middle" fill="black" opacity="0.8" x="740" y="150" font-size="20" font-family="Chicle serif" font-weight="bold">Instruction</text>
+				<g id="single_instruction">
+					<rect height="208" width="205" x="530" y="157" rx="10" ry="10" fill="green" opacity="0.5" />
+					<text fill="black" text-anchor="middle" opacity="0.8" x="632" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Single Player</text>
+					<g>
+						<rect height="50" width="50" x="609" y="210" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="50" width="50" x="609" y="263" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="50" width="50" x="556" y="263" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="50" width="50" x="662" y="263" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<text text-anchor="middle" fill="black" x="634" y="240" font-size="20" font-family="Chicle serif" font-weight="bold">w</text>
+						<text text-anchor="middle" fill="black" x="634" y="293" font-size="20" font-family="Chicle serif" font-weight="bold">s</text>
+						<text text-anchor="middle" fill="black" x="581" y="293" font-size="20" font-family="Chicle serif" font-weight="bold">a</text>
+						<text text-anchor="middle" fill="black" x="687" y="293" font-size="20" font-family="Chicle serif" font-weight="bold">d</text>
+					</g>
+				</g>
+				<g id=multi_instruction>
+					<rect height="208" width="205" x="745" y="157" rx="10" ry="10" fill="green" opacity="0.5" />				
+					<text fill="black" text-anchor="middle" opacity="0.8" x="847" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
+					<g>
+						<text text-anchor="middle" fill="black" x="900" y="213" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1</text>
+						<rect height="40" width="40" x="810" y="188" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="810" y="230" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="768" y="230" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="852" y="230" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<text text-anchor="middle" fill="black" x="830" y="212" font-size="15" font-family="Chicle serif" font-weight="bold">w</text>
+						<text text-anchor="middle" fill="black" x="830" y="254" font-size="15" font-family="Chicle serif" font-weight="bold">s</text>
+						<text text-anchor="middle" fill="black" x="788" y="254" font-size="15" font-family="Chicle serif" font-weight="bold">a</text>
+						<text text-anchor="middle" fill="black" x="872" y="254" font-size="15" font-family="Chicle serif" font-weight="bold">d</text>
+					</g>
+					<g>
+						<text text-anchor="middle" fill="black" x="795" y="300" font-size="20" font-family="Chicle serif" font-weight="bold">Player 2</text>
+						<rect height="40" width="40" x="845" y="275" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="845" y="317" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="803" y="317" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<rect height="40" width="40" x="887" y="317" rx="5" ry="5" fill="#d1fcf8" stroke="#000000"/>
+						<text text-anchor="middle" fill="black" x="865" y="299" font-size="15" font-family="Chicle serif" font-weight="bold">↑</text>
+						<text text-anchor="middle" fill="black" x="865" y="341" font-size="15" font-family="Chicle serif" font-weight="bold">↓</text>
+						<text text-anchor="middle" fill="black" x="823" y="341" font-size="15" font-family="Chicle serif" font-weight="bold">←</text>
+						<text text-anchor="middle" fill="black" x="907" y="341" font-size="15" font-family="Chicle serif" font-weight="bold">→</text>
+					</g>
+				</g>
+			</g>
+			<g id="single_player">
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="430" />
+			  <text text-anchor="middle" fill="black" opacity="0.8" x="360" y="435" font-size="20" font-family="Chicle serif" font-weight="bold">Single Player</text>
+			</g>
+			<g id="play_button">
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="430" />
+			  <text text-anchor="middle" fill="black" opacity="0.8" x="640" y="435" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
+			</g>
+ 		</svg>
+
+      <!-- Game scene -->
+      <svg id="game">
+          <svg id="timer_bar" y="1" height="4"></svg>
+      <g>
+        <!-- Timer -->
+        <rect stroke="#000000" fill="#d1fcf8" opacity="0.4" rx="10" ry="10" x="450" y="5" width="100" height="60" />
+        <line x1="450" y1="35" x2="550" y2="35" style="stroke:rgb(0,0,0);stroke-width:2;opacity:0.5;" />
+        <text text-anchor="middle" fill="#000000" x="500" y="25" font-size="15" font-family="Chicle serif" font-weight="bold">Timer</text>
+        <text id="countdown" text-anchor="middle" fill="#000000" x="500" y="55" font-size="15" font-family="Chicle serif" font-weight="bold">300</text>
+      </g>
+      <g>
+        <!-- Score 1 -->
+        <rect stroke="#000000" fill="#d1fcf8" opacity="0.4" rx="10" ry="10" x="200" y="5" width="100" height="60" />
+        <line x1="200" y1="35" x2="300" y2="35" style="stroke:rgb(0,0,0);stroke-width:2;opacity:0.5;" />
+        <text text-anchor="middle" fill="#000000" x="250" y="25" font-size="15" font-family="Chicle serif" font-weight="bold">Score 1</text>
+        <text id="score_1" text-anchor="middle" fill="#000000" x="250" y="55" font-size="15" font-family="Chicle serif" font-weight="bold">0</text>
+      </g>
+      <g>
+        <!-- Score 2 -->
+        <rect stroke="#000000" fill="#d1fcf8" opacity="0.4" rx="10" ry="10" x="700" y="5" width="100" height="60" />
+        <line x1="700" y1="35" x2="800" y2="35" style="stroke:rgb(0,0,0);stroke-width:2;opacity:0.5;" />
+        <text text-anchor="middle" fill="#000000" x="750" y="25" font-size="15" font-family="Chicle serif" font-weight="bold">Score 2</text>
+        <text id="score_2" text-anchor="middle" fill="#000000" x="750" y="55" font-size="15" font-family="Chicle serif" font-weight="bold">0</text>
+      </g>
       </svg>
-    </svg>
 
-    <!-- Game scene -->
-    <svg id="game">
-      <defs>
-        <radialGradient spreadMethod="pad" id="rad_grad1">
-          <stop offset="0" stop-color="purple"/>
-          <stop offset="1" stop-color="lightgrey"/>
-        </radialGradient>
-        <radialGradient spreadMethod="pad" id="rad_grad2">
-          <stop offset="0" stop-color="blue"/>
-          <stop offset="1" stop-color="black"/>
-        </radialGradient>
-      </defs>
-      <text x="0" y="15" fill="red">Game scene</text>
-      <svg id="timer_bar" height="5"></svg>
-    </svg>
+      <!-- Game Over scene -->
+      <svg id="gameover">
+			<rect id="gameover_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4" stroke="black" stroke-width="3"/>
+			<text id="game_over_text" text-anchor="middle" fill="#000000" x="500" y="130" font-size="75" font-family="Chicle serif" font-weight="bolder">Game Over</text>
+			<g> <!-- Score 1 -->
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="360" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1 Score</text>
+				<rect height="40" width="80" x="320" y="230" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_1" text-anchor="middle" fill="#000000" x="360" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+			</g>
+			<g> <!-- Score 2 -->
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="640" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 2 Score</text>
+				<rect height="40" width="80" x="600" y="230" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_2" text-anchor="middle" fill="#000000" x="640" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+			</g>
+			<g id="restart_button">
+			  <ellipse  fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="350" />
+			  <text text-anchor="middle" fill="#000000" x="360" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Back to Main</text>
+			</g>
+			<g id="replay_button">
+			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="350" />
+			  <text text-anchor="middle" fill="#000000" x="640" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Play again</text>
+			</g>
+			<text id="winner" text-anchor="middle" fill="#000000" x="500" y="190" font-size="30" font-family="Chicle serif" font-weight="bolder">
+				Player Won!
+			</text>	
+ 		</svg>
 
-    <!-- Game Over scene -->
-    <svg id="gameover">
-      <text x="0" y="15" fill="red">Game over scene</text>
-      <svg id="restart_button" xmlns="http://www.w3.org/2000/svg" viewBox="3 3 16 16">
-        <circle cx="11" cy="-1041.36" r="8" transform="matrix(1 0 0-1 0-1030.36)" opacity=".98" fill="#1d99f3"/>
-        <path
-            d="m120.6 38.723c-3.312-7.713-7.766-14.367-13.36-19.961-5.595-5.594-12.248-10.05-19.962-13.361-7.713-3.314-15.805-4.97-24.278-4.97-7.984 0-15.71 1.506-23.18 4.521-7.468 3.01-14.11 7.265-19.92 12.751l-10.593-10.511c-1.63-1.684-3.503-2.064-5.622-1.141-2.173.924-3.259 2.527-3.259 4.808v36.5c0 1.412.516 2.634 1.548 3.666 1.033 1.032 2.255 1.548 3.667 1.548h36.5c2.282 0 3.884-1.086 4.807-3.259.923-2.118.543-3.992-1.141-5.622l-11.162-11.243c3.803-3.585 8.148-6.341 13.04-8.27 4.889-1.928 9.994-2.893 15.317-2.893 5.649 0 11.04 1.101 16.17 3.3 5.133 2.2 9.572 5.174 13.32 8.922 3.748 3.747 6.722 8.187 8.922 13.32 2.199 5.133 3.299 10.523 3.299 16.17 0 5.65-1.1 11.04-3.299 16.17-2.2 5.133-5.174 9.573-8.922 13.321-3.748 3.748-8.188 6.722-13.32 8.921-5.133 2.2-10.525 3.3-16.17 3.3-6.464 0-12.574-1.412-18.332-4.236-5.757-2.824-10.618-6.816-14.583-11.977-.38-.543-1-.87-1.874-.979-.815 0-1.494.244-2.037.733l-11.162 11.244c-.434.436-.665.991-.692 1.67-.027.68.15 1.29.53 1.833 5.921 7.17 13.09 12.724 21.509 16.661 8.419 3.937 17.3 5.907 26.642 5.907 8.473 0 16.566-1.657 24.279-4.97 7.713-3.313 14.365-7.768 19.961-13.361 5.594-5.596 10.05-12.248 13.361-19.961 3.313-7.713 4.969-15.807 4.969-24.279 0-8.474-1.657-16.564-4.97-24.277"
-            fill="#fff" transform="matrix(.07192 0 0 .07192 6.674 6.768)"/>
-      </svg>
-    </svg>
-
-    <svg id="template" width="1000" height="500">
+      <svg id="template" width="1000" height="500">
       <g id="player1">
         <defs>
           <radialGradient spreadMethod="pad" id="rad_grad1">
@@ -123,8 +213,9 @@
               stroke-linecap="round" fill="none" stroke="#FFFFFF"/>
       </g>
     </svg>
+    </div>
   </div>
-</div>
-<script src="./index.js" charset="utf-8"></script>
+  <script src="./index.js" charset="utf-8"></script>
 </body>
+
 </html>
