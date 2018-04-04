@@ -24,7 +24,6 @@ class BubbleManager extends GameManager {
         manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
         manager.addGameObject(manager.player1)
         document.getElementsByTagName('body')[0].onkeydown = function (e) {
-          console.log("Keydown! :" + e.keyCode);
           switch (e.keyCode) {
             case 87:
               // 'w'
@@ -45,9 +44,8 @@ class BubbleManager extends GameManager {
             default:
               break;
           }
-        }
+        };
         document.getElementsByTagName('body')[0].onkeyup = function (e) {
-          console.log("Keydown! :" + e.keyCode);
           switch (e.keyCode) {
             case 87:
               // 'w'
@@ -68,7 +66,7 @@ class BubbleManager extends GameManager {
             default:
               break;
           }
-        }
+        };
 
         new ProgressBar.Line('#timer_bar', {
           strokeWidth: 4,
