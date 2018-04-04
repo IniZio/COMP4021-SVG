@@ -32,9 +32,9 @@
 				<g id="multi_objective">
 					<rect height="208" width="205" x="265" y="157" rx="10" ry="10" fill="green" opacity="0.5" />
 					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
-					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="240" font-size="25" font-family="Chicle serif" font-weight="bold">Get BIGGER</text>							
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="240" font-size="25" font-family="Chicle serif" font-weight="bold">Get BIGGER</text>
 					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="280" font-size="25" font-family="Chicle serif" font-weight="bold">And</text>
-					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="320" font-size="25" font-family="Chicle serif" font-weight="bold">Eat your ENEMY!</text>							
+					<text fill="black" text-anchor="middle" opacity="0.8" x="368" y="320" font-size="25" font-family="Chicle serif" font-weight="bold">Eat your ENEMY!</text>
 				</g>
 			</g>
 			<g id="game_instruction">
@@ -55,7 +55,7 @@
 					</g>
 				</g>
 				<g id=multi_instruction>
-					<rect height="208" width="205" x="745" y="157" rx="10" ry="10" fill="green" opacity="0.5" />				
+					<rect height="208" width="205" x="745" y="157" rx="10" ry="10" fill="green" opacity="0.5" />
 					<text fill="black" text-anchor="middle" opacity="0.8" x="847" y="180" font-size="20" font-family="Chicle serif" font-weight="bold">Multi Players</text>
 					<g>
 						<text text-anchor="middle" fill="black" x="900" y="213" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1</text>
@@ -93,7 +93,17 @@
 
       <!-- Game scene -->
       <svg id="game">
-          <svg id="timer_bar" y="1" height="4"></svg>
+        <defs>
+          <radialGradient spreadMethod="pad" id="rad_grad1">
+            <stop offset="0" stop-color="purple"/>
+            <stop offset="1" stop-color="lightgrey"/>
+          </radialGradient>
+          <radialGradient spreadMethod="pad" id="rad_grad2">
+            <stop offset="0" stop-color="blue"/>
+            <stop offset="1" stop-color="black"/>
+          </radialGradient>
+        </defs>
+        <svg id="timer_bar" y="1" height="4"></svg>
       <g>
         <!-- Timer -->
         <rect stroke="#000000" fill="#d1fcf8" opacity="0.4" rx="10" ry="10" x="450" y="5" width="100" height="60" />
@@ -141,27 +151,16 @@
 			</g>
 			<text id="winner" text-anchor="middle" fill="#000000" x="500" y="190" font-size="30" font-family="Chicle serif" font-weight="bolder">
 				Player Won!
-			</text>	
+			</text>
  		</svg>
 
       <svg id="template" width="1000" height="500">
       <g id="player1">
-        <defs>
-          <radialGradient spreadMethod="pad" id="rad_grad1">
-            <stop offset="0" stop-color="purple"/>
-            <stop offset="1" stop-color="lightgrey"/>
-          </radialGradient>
-        </defs>
         <circle id="main1" cx="200" cy="250" r="50" fill="url(#rad_grad1)"/>
         <circle id="trail1" cx="300" cy="250" r="5" fill="url(#rad_grad1)"/>
       </g>
       <g id="player2">
-        <defs>
-          <radialGradient spreadMethod="pad" id="rad_grad2">
-            <stop offset="0" stop-color="blue"/>
-            <stop offset="1" stop-color="black"/>
-          </radialGradient>
-        </defs>
+
         <circle id="main2" cx="800" cy="250" r="50" fill="url(#rad_grad2)"/>
         <circle id="trail2" cx="700" cy="250" r="5" fill="url(#rad_grad2)"/>
       </g>
