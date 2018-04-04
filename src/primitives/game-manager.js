@@ -7,6 +7,13 @@ class GameManager {
       alert('SVG not supported')
       return
     }
+    this.startingMusic = new Audio((require('../sound/starting_screen_sound.MP3')))
+    this.playingMusic = new Audio((require('../sound/game_play_sound.MP3')))
+    this.gameOverMusic = new Audio((require('../sound/game_finishing_sound.MP3')))
+    this.foodAppearMusic = new Audio((require('../sound/food_appear_sound.MP3')))
+    this.foodEatingMusic = new Audio((require('../sound/food_eating_sound.MP3')))
+    this.boosterMusic = new Audio((require('../sound/booster_5sec.MP3')))
+    this.bangWallMusic = new Audio((require('../sound/bang_the_wall_sound.MP3')))
 
     this.$el = el
     this.$generators = {}
@@ -29,6 +36,7 @@ class GameManager {
     }
 
     autoBind(this)
+    window.GameManager = this
     return this
   }
 
@@ -77,6 +85,82 @@ class GameManager {
     gameObj.init({gameManager: this})
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
+  }
+
+  playMusicStarting(){
+    if (typeof this.startingMusic.loop == 'boolean')
+    {
+      this.startingMusic.loop = true;
+    }
+    else
+    {
+      this.startingMusic.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+      }, false);
+    }
+    this.startingMusic.pause();
+    this.startingMusic.currentTime = 0;
+    this.startingMusic.play();
+  }
+
+  playMusicPlaying(){
+	this.startingMusic.pause();
+	this.startingMusic.currentTime = 0;
+
+    if (typeof this.playingMusic.loop == 'boolean')
+    {
+      this.playingMusic.loop = true;
+    }
+    else
+    {
+      this.playingMusic.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+      }, false);
+    }
+    this.playingMusic.pause();
+    this.playingMusic.currentTime = 0;
+    this.playingMusic.play();
+  }
+
+  playMusicGameOver(){
+    this.startingMusic.pause();
+    this.startingMusic.currentTime = 0;
+    this.playingMusic.pause();
+    this.playingMusic.currentTime = 0;
+    this.bangWallMusic.pause();
+    this.bangWallMusic.currentTime = 0;
+    this.boosterMusic.pause();
+    this.boosterMusic.currentTime = 0;
+
+    this.gameOverMusic.pause();
+    this.gameOverMusic.currentTime = 0;
+    this.gameOverMusic.play();
+  }
+
+  playMusicFoodAppear(){
+    this.foodAppearMusic.pause();
+    this.foodAppearMusic.currentTime = 0;
+    this.foodAppearMusic.play();
+  }
+
+  playMusicFoodEating(){
+    this.foodEatingMusic.pause();
+    this.foodEatingMusic.currentTime = 0;
+    this.foodEatingMusic.play();
+  }
+
+  playMusicBangWall(){
+    this.bangWallMusic.pause();
+    this.bangWallMusic.currentTime = 0;
+    this.bangWallMusic.play();
+  }
+
+  playMusicBooster(){
+    this.boosterMusic.pause();
+    this.boosterMusic.currentTime = 0;
+    this.boosterMusic.play();
   }
 }
 
