@@ -7,6 +7,8 @@ class Player extends GameObject {
     this.svgObj = new SVGObject(opt.svg.node, 200, 250, 100, 100);
     this.svgObj.x = opt.x;
     this.svgObj.y = opt.y;
+    this.x = opt.x;
+    this.y = opt.y;
     this.svg.move(opt.x, opt.y);
     this.speedMultiplier = 1;
     this.size = 1;
@@ -100,7 +102,14 @@ class Player extends GameObject {
   }
 
   putTrail() {
-
+    if (!opt.playerNo || opt.playerNo == 1) {
+      // Player 1
+      this.gameManager.emit('player1.putTrail');
+    }
+    else {
+      // Player 2
+      this.gameManager.emit('player2.putTrail');
+    }
   }
 
   update(frameTime) {
