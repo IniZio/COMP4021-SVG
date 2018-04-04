@@ -1,10 +1,11 @@
-import SvgObject from 'svgObject'
-import Edible from 'edible'
+import SVGObject from './SVGObject'
+import Edible from './edibleObject'
 
 export class Food extends Edible {
-    constructor(svgObj, x, y, gain) {
-        super(svgObj, x, y);
-        this.gain = gain;
+    constructor(opt) {
+        super(...arguments);
+        this.svgObj = new SVGObject(opt.svg, 0, 0, 35, 30);
+        this.gain = opt.gain;
     }
 
     /**
@@ -14,7 +15,7 @@ export class Food extends Edible {
      *
      * Should be implemented by subclass.
      *
-     * @param player Player object eating this Edible object.
+     * @param player Player object eating this EdibleObject object.
      */
     eatenBy(player) {
         palyer.grow(this.gain);

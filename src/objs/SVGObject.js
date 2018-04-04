@@ -1,9 +1,9 @@
 /**
- * SvgObject handles SVG manipulations.
+ * SVGObject handles SVG manipulations.
  */
-class SvgObject {
+class SVGObject {
     /**
-     * Constructs a SvgObject from a SVG element.
+     * Constructs a SVGObject from a SVG element.
      * @param domNode The SVG element.
      * @param svgX
      * @param svgY
@@ -11,7 +11,7 @@ class SvgObject {
      * @param svgSizeY
      */
     constructor(domNode, svgX, svgY, svgSizeX, svgSizeY) {
-        if (domNode.TypeName && domNode.TypeName === 'SvgObject') {
+        if (domNode.TypeName && domNode.TypeName === 'SVGObject') {
             // Copy Constructor
             svgObj = domNode;
             this.domNode = svgObj.domNode.cloneNode();
@@ -28,7 +28,7 @@ class SvgObject {
             return
         }
 
-        // Convert SVG DOM node to SvgObject
+        // Convert SVG DOM node to SVGObject
         this.domNode = domNode;
 
         this.svgX = svgX;
@@ -44,7 +44,7 @@ class SvgObject {
 
     /**
      * Apply transformation.
-     * Set property x, y, sizeX and sizeY of the SvgObject first,
+     * Set property x, y, sizeX and sizeY of the SVGObject first,
      * and then call this function to apply the new transformation.
      * Transformation is applied with animation.
      *
@@ -62,20 +62,20 @@ class SvgObject {
     }
 
     /**
-     * Getter of the center point of the SvgObject
+     * Getter of the center point of the SVGObject
      *
-     * @returns {{x: *, y: *}} Center coordinate of the SvgObject
+     * @returns {{x: *, y: *}} Center coordinate of the SVGObject
      */
     get center() {
         return {
-            x: (this.SizeX / 2) + this.x,
-            y: (this.SizeY / 2) + this.y
+            x: (this.sizeX / 2) + this.x,
+            y: (this.sizeY / 2) + this.y
         };
     }
 
     static get TypeName() {
-        return 'SvgObject';
+        return 'SVGObject';
     }
 };
 
-export default SvgObject;
+export default SVGObject;

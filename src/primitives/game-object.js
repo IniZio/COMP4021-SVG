@@ -2,6 +2,7 @@ import autoBind from 'auto-bind'
 
 class GameObject {
     constructor(opt) {
+        const {controls} = opt;
         Object.assign(this, opt)
         this.svg.move(this.x, this.y)
 

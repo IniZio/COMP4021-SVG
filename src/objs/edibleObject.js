@@ -1,21 +1,20 @@
-import SvgObject from 'svgObject'
+import SVGObject from './SVGObject'
 import GameObject from '../primitives/game-object'
 
 /**
- * Edible object is a
+ * EdibleObject object is a
  */
- class Edible extends GameObject {
+ class EdibleObject extends GameObject {
     /**
      * Constructs an edible object.
-     * @param svgObj The SvgObject handling the display of this object.
-     * @param x The x position of the new Edible object.
-     * @param y The y position of the new Edible object.
+     * @param svgObj The SVGObject handling the display of this object.
+     * @param x The x position of the new EdibleObject object.
+     * @param y The y position of the new EdibleObject object.
      */
-    constructor(svgObj, x, y, selfDestructTime) {
-        super();
+    constructor(opt) {
+        super(...arguments);
         //TODO implement
-        this.svgObj = svgObj;
-        this.selfDestructTime = selfDestructTime;
+        this.selfDestructTime = opt.selfDestructTime;
         this.selfDestructTimer = 0;
     }
 
@@ -26,13 +25,13 @@ import GameObject from '../primitives/game-object'
      *
      * Should be implemented by subclass.
      *
-     * @param player Player object eating this Edible object.
+     * @param player Player object eating this EdibleObject object.
      */
     eatenBy(player) {
         if (player === null){
             //TODO self destruction
         }
-        throw new Error("Function Edible.eatenBy is not implemented");
+        throw new Error("Function EdibleObject.eatenBy is not implemented");
     }
 
     update(frameTime) {
@@ -48,8 +47,8 @@ import GameObject from '../primitives/game-object'
     }
 
     static get TypeName(){
-        return 'Edible';
+        return 'EdibleObject';
     }
 };
 
- export default Edible;
+ export default EdibleObject;

@@ -1,10 +1,11 @@
-import SvgObject from 'svgObject'
-import Edible from 'edible'
+import SVGObject from './SVGObject'
+import Edible from './edibleObject'
 
-export class SpeedBooster extends Edible {
-    constructor(svgObj, x, y, speedMultiplier) {
-        super(svgObj, x, y);
-        this.speedMultiplier = speedMultiplier;
+class SpeedBooster extends Edible {
+    constructor(opt) {
+        super(...arguments);
+        this.svgObj = new SVGObject(opt.svg, 0,0,20,30);
+        this.speedMultiplier = opt.speedMultiplier;
     }
 
     /**
@@ -14,7 +15,7 @@ export class SpeedBooster extends Edible {
      *
      * Should be implemented by subclass.
      *
-     * @param player Player object eating this Edible object.
+     * @param player Player object eating this EdibleObject object.
      */
     eatenBy(player) {
         player.boostSpeed(this.speedMultiplier);
@@ -33,3 +34,5 @@ export class SpeedBooster extends Edible {
         return 'SpeedBooster';
     }
 };
+
+export default SpeedBooster;
