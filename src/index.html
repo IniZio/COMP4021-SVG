@@ -12,14 +12,15 @@
       <div style="display: none">
         <!-- Welcome scene -->
         <svg id="welcome">
-          <g>
 			  <rect id="starting_screen" height="500" width="1000" fill="#000000" fill-opacity="0.4"/>
-			  <ellipse id="single_player" fill="#00ff7f" ry="30" rx="72" cx="360" cy="340">
-			  	<text text-anchor="middle" fill="#000000" x="360" y="350" font-size="20" font-family="serif" font-weight="bold">Single Player</text>
-			  </ellipse>
-			  <ellipse id="play_button"  fill="#00ff7f" ry="30" rx="72" cx="630" cy="340">
-			  	<text text-anchor="middle" fill="#000000" x="630" y="350" font-size="20" font-family="serif" font-weight="bold">Multi Player</text>
-			  </ellipse>
+			<g id="single_player">
+			  <ellipse fill="#00ff7f" ry="30" rx="72" cx="360" cy="340" />
+			  <text text-anchor="middle" fill="#000000" x="360" y="345" font-size="20" font-family="serif" font-weight="bold">Single Player</text>
+			</g>
+			<g id="play_button">
+			  <ellipse fill="#00ff7f" ry="30" rx="72" cx="630" cy="340" />
+			  <text text-anchor="middle" fill="#000000" x="630" y="345" font-size="20" font-family="serif" font-weight="bold">Multi Player</text>
+			</g>
 			  <text id="game_title" text-anchor="middle" fill="#000000" x="500" y="200" font-size="100" font-family="serif" font-weight="bolder">Bubble Tail</text>
  		  </g>
         </svg>
@@ -32,14 +33,15 @@
 
         <!-- Game Over scene -->
         <svg id="gameover">
-          <g>
 			  <rect id="gameover_screen" height="500" width="1000" fill="#000000" fill-opacity="0.4"/>
-			  <ellipse id="restart_button" fill="#00ff7f" ry="30" rx="72" cx="360" cy="340">
-			  	<text text-anchor="middle" fill="#000000" x="360" y="350" font-size="20" font-family="serif" font-weight="bold">Back to Main</text>
-			  </ellipse>
-			  <ellipse id="replay_button" fill="#00ff7f" ry="30" rx="72" cx="630" cy="340">
-			  	<text text-anchor="middle" fill="#000000" x="630" y="350" font-size="20" font-family="serif" font-weight="bold">Play again</text>
-			  </ellipse>
+			<g id="restart_button">
+			  <ellipse  fill="#00ff7f" ry="30" rx="72" cx="360" cy="340" />
+			  <text text-anchor="middle" fill="#000000" x="360" y="345" font-size="20" font-family="serif" font-weight="bold">Back to Main</text>
+			</g>
+			<g id="replay_button">
+			  <ellipse fill="#00ff7f" ry="30" rx="72" cx="630" cy="340" />
+			  <text text-anchor="middle" fill="#000000" x="630" y="345" font-size="20" font-family="serif" font-weight="bold">Play again</text>
+			</g>
 			  <text id="game_over_text" text-anchor="middle" fill="#000000" x="500" y="200" font-size="100" font-family="serif" font-weight="bolder">Game Over</text>
  		  </g>
  		</svg>
