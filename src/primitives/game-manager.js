@@ -44,6 +44,7 @@ class GameManager {
   reset (scene = 'welcome') {
     // Kill schedulers
     this.$intervals.map(clearInterval)
+    this.$intervals.length = 0
 
     // Static template
     this.scene = scene
