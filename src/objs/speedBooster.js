@@ -4,7 +4,7 @@ import Edible from './edibleObject'
 class SpeedBooster extends Edible {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg, 0, 0, 20, 30);
+    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 20, 30);
     this.speedMultiplier = 1.5;
   }
 

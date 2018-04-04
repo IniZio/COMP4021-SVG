@@ -7,10 +7,10 @@ export class Trail extends Edible {
     super(...arguments);
     if (opt.playerNo = 1)
     // Must use SVG.get('trail1')
-      this.svgObj = new SVGObject(opt.svg, 300, 250, 10, 10);
+      this.svgObj = new SVGObject(opt.svg.node, 300, 250, 10, 10);
     else
     // Must use SVG.get('trail2')
-      this.svgObj = new SVGObject(opt.svg, 700, 250, 10, 10);
+      this.svgObj = new SVGObject(opt.svg.node, 700, 250, 10, 10);
     this.harm = opt.harm;
   }
 

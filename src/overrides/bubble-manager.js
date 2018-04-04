@@ -21,7 +21,55 @@ class BubbleManager extends GameManager {
         const MILLI_SEC = 1000
         const GAME_TIME = 150 * MILLI_SEC
 
-        manager.addGameObject(new Player({x: 0, y: 10, svg: SVG.get('main1').clone()}))
+        manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
+        manager.addGameObject(manager.player1)
+        document.getElementsByTagName('body')[0].onkeydown = function (e) {
+          console.log("Keydown! :" + e.keyCode);
+          switch (e.keyCode) {
+            case 87:
+              // 'w'
+              manager.player1.moveW = true;
+              break;
+            case 83:
+              // 's'
+              manager.player1.moveS = true;
+              break;
+            case 65:
+              // 'a'
+              manager.player1.moveA = true;
+              break;
+            case 68:
+              // 'd'
+              manager.player1.moveD = true;
+              break;
+            default:
+              break;
+          }
+        }
+        document.getElementsByTagName('body')[0].onkeyup = function (e) {
+          console.log("Keydown! :" + e.keyCode);
+          switch (e.keyCode) {
+            case 87:
+              // 'w'
+              manager.player1.moveW = false;
+              break;
+            case 83:
+              // 's'
+              manager.player1.moveS = false;
+              break;
+            case 65:
+              // 'a'
+              manager.player1.moveA = false;
+              break;
+            case 68:
+              // 'd'
+              manager.player1.moveD = false;
+              break;
+            default:
+              break;
+          }
+        }
+
         new ProgressBar.Line('#timer_bar', {
           strokeWidth: 4,
           // easing: 'easeInOut',

@@ -4,14 +4,24 @@ import GameObject from "../primitives/game-object";
 class Player extends GameObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg, 200, 250, 100, 100);
+    this.svgObj = new SVGObject(opt.svg.node, 200, 250, 100, 100);
     this.svgObj.x = opt.x;
     this.svgObj.y = opt.y;
-    this.svgObj.transform(0, 0);
+    this.svg.move(opt.x, opt.y);
     this.speedMultiplier = 1;
     this.size = 1;
     this.putDownTrailTime = opt.putDownTrailTime;
     this.putDownTrailTimer = 0;
+    if (!opt.playerNo || opt.playerNo == 1) {
+      // Player 1
+    }
+    else {
+      // Player 2
+    }
+    this.moveW = false;
+    this.moveS = false;
+    this.moveA = false;
+    this.moveD = false;
   }
 
 
@@ -30,34 +40,27 @@ class Player extends GameObject {
     return this.speedMultiplier / this.size;
   }
 
-  move() {
-    switch (this.nextMoveDirection) {
-        //TODO Adjust player speed here!
-      case 'w':
-        svgObj.y += 1 * speedMultiplier;
-        break;
-      case 's':
-        svgObj.y -= 1 * speedMultiplier;
-        break;
-      case 'a':
-        svgObj.x -= 1 * speedMultiplier;
-        break;
-      case 'd':
-        svgObj.x += 1 * speedMultiplier;
-        break;
-      default:
-        break;
+  move(frameTime) {
+    if (this.moveW) {
+      this.y -= 5 * this.speedMultiplier;
     }
-    this.svgObj.transform(0, 0.025);
-    this.nextMoveDirection = '';
+    if (this.moveS) {
+      this.y += 5 * this.speedMultiplier;
+    }
+    if (this.moveA) {
+      this.x -= 5 * this.speedMultiplier;
+    }
+    if (this.moveD) {
+      this.x += 5 * this.speedMultiplier;
+    }
+    this.svg.animate(frameTime).move(this.x, this.y);
   }
 
   clearMove() {
-    this.nextMoveDirection = '';
-  }
-
-  scheduleMove(direction) {
-    this.nextMoveDirection = direction;
+    this.moveW = false;
+    this.moveS = false;
+    this.moveA = false;
+    this.moveD = false;
   }
 
   /**
@@ -93,7 +96,7 @@ class Player extends GameObject {
     this.size += amount / 100;
     this.svgObj.sizeX = this.svgObj.svgSizeX * this.size;
     this.svgObj.sizeY = this.svgObj.svgSizeX * this.size;
-    this.svgObj.transform(0, 0.025);
+    this.svgObj.transform(''+0+'s', ''+0.025 + 's');
   }
 
   putTrail() {
@@ -106,6 +109,7 @@ class Player extends GameObject {
       this.putDownTrailTimer = 0;
       //TODO put down trail
     }
+    this.move(frameTime);
   }
 
   /**
