@@ -7,13 +7,13 @@ class GameManager {
       alert('SVG not supported')
       return
     }
-    this.startingMusic = new Audio('../sound/starting_screen_sound.MP3');
-    this.playingMusic = new Audio('../sound/game_play_sound.MP3');
-    this.gameOverMusic = new Audio('../sound/game_finishing_sound.MP3');
-    this.foodAppearMusic = new Audio('../sound/food_appear_sound.MP3');
-    this.foodEatingMusic = new Audio('../sound/food_eating_sound.MP3');
-    this.boosterMusic = new Audio('../sound/booster_5sec.MP3');
-    this.bangWallMusic = new Audio('../sound/bang_the_wall_sound.MP3');
+    this.startingMusic = new Audio((require('../sound/starting_screen_sound.MP3')))
+    this.playingMusic = new Audio((require('../sound/game_play_sound.MP3')))
+    this.gameOverMusic = new Audio((require('../sound/game_finishing_sound.MP3')))
+    this.foodAppearMusic = new Audio((require('../sound/food_appear_sound.MP3')))
+    this.foodEatingMusic = new Audio((require('../sound/food_eating_sound.MP3')))
+    this.boosterMusic = new Audio((require('../sound/booster_5sec.MP3')))
+    this.bangWallMusic = new Audio((require('../sound/bang_the_wall_sound.MP3')))
 
     this.$el = el
     this.$generators = {}
@@ -36,6 +36,7 @@ class GameManager {
     }
 
     autoBind(this)
+    window.GameManager = this
     return this
   }
 
@@ -128,10 +129,10 @@ class GameManager {
     this.startingMusic.currentTime = 0;
     this.playingMusic.pause();
     this.playingMusic.currentTime = 0;
-    this.BangWall.pause();
-    this.BangWall.currentTime = 0;
-    this.Booster.pause();
-    this.Booster.currentTime = 0;
+    this.bangWallMusic.pause();
+    this.bangWallMusic.currentTime = 0;
+    this.boosterMusic.pause();
+    this.boosterMusic.currentTime = 0;
 
     this.gameOverMusic.pause();
     this.gameOverMusic.currentTime = 0;
