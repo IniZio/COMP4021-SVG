@@ -93,6 +93,8 @@ class BubbleManager extends GameManager {
         setTimeout(() => manager.scene !== 'gameover' && manager.reset('gameover'), GAME_TIME)
       },
       gameover(manager) {
+
+
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -119,6 +121,14 @@ class BubbleManager extends GameManager {
     }, 3000);
     this.$intervals.push(scheduler);
     return scheduler;
+  }
+
+  update () {
+    super.update(...arguments)
+    if (this.scene === 'game' || this.scene === 'gameover') {
+      if (this.player1) document.getElementById('score_1').textContent = this.player1.score
+      if (this.player2) document.getElementById('score_2').textContent = this.player2.score
+    }
   }
 }
 
