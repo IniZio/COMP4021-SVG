@@ -2,7 +2,7 @@ import autoBind from 'auto-bind'
 import SVG from 'svg.js'
 
 class GameManager {
-  constructor ({el, empty}) {
+  constructor({el, empty}) {
     if (!SVG.supported) {
       alert('SVG not supported')
       return
@@ -23,16 +23,17 @@ class GameManager {
     // animation frame compatibility
     if (!window.requestAnimFrame) {
       window.requestAnimFrame = (function () {
-  		  return (
-          window.requestAnimationFrame
-  			  || window.webkitRequestAnimationFrame
-  				|| window.mozRequestAnimationFrame
-  			  || window.oRequestAnimationFrame
-  				|| window.msRequestAnimationFrame
-  			  || function (callback) {
-            window.setTimeout(callback, 1000 / 120);
-  			  }
-        )})()
+        return (
+            window.requestAnimationFrame
+            || window.webkitRequestAnimationFrame
+            || window.mozRequestAnimationFrame
+            || window.oRequestAnimationFrame
+            || window.msRequestAnimationFrame
+            || function (callback) {
+              window.setTimeout(callback, 1000 / 120);
+            }
+        )
+      })()
     }
 
     autoBind(this)
@@ -41,7 +42,7 @@ class GameManager {
   }
 
   // Resets scene
-  reset (scene = 'welcome') {
+  reset(scene = 'welcome') {
     // Kill schedulers
     this.$intervals.map(clearInterval)
     this.$intervals.length = 0
@@ -59,7 +60,7 @@ class GameManager {
     this.$generators[this.scene](this)
   }
 
-  mount (context) {
+  mount(context) {
     this.$context = context
 
     this.reset()
@@ -67,7 +68,7 @@ class GameManager {
     // NOTE: do not delete the semi-colon
     const manager = this;
 
-    (function gameLoop (ms) {
+    (function gameLoop(ms) {
       if (this.$lastUpdate) {
         this.update((ms - this.$lastUpdate) / 1000)
       }
@@ -78,24 +79,24 @@ class GameManager {
     }.bind(manager))()
   }
 
-  update (dt) {
+  update(dt) {
     this.gameObjects.map(object => object.update && object.update(dt))
   }
 
-  addGameObject (gameObj) {
+  addGameObject(gameObj) {
     gameObj.init({gameManager: this})
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
+    // Note: This makes player to be always on the very top;
+    this.player1.svg.front()
   }
 
-  playMusicStarting(){
-    if (typeof this.startingMusic.loop == 'boolean')
-    {
+  playMusicStarting() {
+    if (typeof this.startingMusic.loop == 'boolean') {
       this.startingMusic.loop = true;
     }
-    else
-    {
-      this.startingMusic.addEventListener('ended', function() {
+    else {
+      this.startingMusic.addEventListener('ended', function () {
         this.currentTime = 0;
         this.play();
       }, false);
@@ -105,17 +106,15 @@ class GameManager {
     this.startingMusic.play();
   }
 
-  playMusicPlaying(){
-	this.startingMusic.pause();
-	this.startingMusic.currentTime = 0;
+  playMusicPlaying() {
+    this.startingMusic.pause();
+    this.startingMusic.currentTime = 0;
 
-    if (typeof this.playingMusic.loop == 'boolean')
-    {
+    if (typeof this.playingMusic.loop == 'boolean') {
       this.playingMusic.loop = true;
     }
-    else
-    {
-      this.playingMusic.addEventListener('ended', function() {
+    else {
+      this.playingMusic.addEventListener('ended', function () {
         this.currentTime = 0;
         this.play();
       }, false);
@@ -125,7 +124,7 @@ class GameManager {
     this.playingMusic.play();
   }
 
-  playMusicGameOver(){
+  playMusicGameOver() {
     this.startingMusic.pause();
     this.startingMusic.currentTime = 0;
     this.playingMusic.pause();
@@ -140,25 +139,25 @@ class GameManager {
     this.gameOverMusic.play();
   }
 
-  playMusicFoodAppear(){
+  playMusicFoodAppear() {
     this.foodAppearMusic.pause();
     this.foodAppearMusic.currentTime = 0;
     this.foodAppearMusic.play();
   }
 
-  playMusicFoodEating(){
+  playMusicFoodEating() {
     this.foodEatingMusic.pause();
     this.foodEatingMusic.currentTime = 0;
     this.foodEatingMusic.play();
   }
 
-  playMusicBangWall(){
+  playMusicBangWall() {
     this.bangWallMusic.pause();
     this.bangWallMusic.currentTime = 0;
     this.bangWallMusic.play();
   }
 
-  playMusicBooster(){
+  playMusicBooster() {
     this.boosterMusic.pause();
     this.boosterMusic.currentTime = 0;
     this.boosterMusic.play();

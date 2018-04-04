@@ -1,34 +1,39 @@
-import SvgObject from 'svgObject'
-import Edible from 'edible'
+import SVGObject from './SVGObject'
+import Edible from './edibleObject'
 
-export class Food extends Edible {
-    constructor(svgObj, x, y, gain) {
-        super(svgObj, x, y);
-        this.gain = gain;
-    }
+class Food extends Edible {
+  constructor(opt) {
+    super(...arguments);
+    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 35, 30);
+    this.gain = 10;
+  }
 
-    /**
-     * Called when the edible object is eaten by a player.
-     * Apply suitable effect to the player,
-     * then remove itself.
-     *
-     * Should be implemented by subclass.
-     *
-     * @param player Player object eating this Edible object.
-     */
-    eatenBy(player) {
-        palyer.grow(this.gain);
-    }
+  /**
+   * Called when the edible object is eaten by a player.
+   * Apply suitable effect to the player,
+   * then remove itself.
+   *
+   * Should be implemented by subclass.
+   *
+   * @param player Player object eating this EdibleObject object.
+   */
+  eatenBy(player) {
+    palyer.grow(this.gain);
+  }
 
-    update(frameTime) {
-        super.update(frameTime);
-    }
+  update(frameTime) {
+    super.update(frameTime);
+  }
 
-    get center(){
-        return this.svgObj.center;
-    }
+  get center() {
+    if (this.svgObj)
+      return this.svgObj.center;
+    return null;
+  }
 
-    static get TypeName() {
-        return 'Food';
-    }
+  static get TypeName() {
+    return 'Food';
+  }
 }
+
+export default Food;
