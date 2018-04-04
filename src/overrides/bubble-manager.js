@@ -84,12 +84,8 @@ class BubbleManager extends GameManager {
           step: function (state, timer) {
             timer.path.setAttribute('stroke', state.color);
 
-            var value = Math.round(timer.value() * 100);
-            if (value === 0) {
-              timer.setText('');
-            } else {
-              timer.setText(value);
-            }
+            const timeLeft = Math.round(GAME_TIME * (1 - timer.value()) / MILLI_SEC);
+            document.getElementById('countdown').textContent = timeLeft
           }
         }).animate(1)
         manager.scheduleProps()
