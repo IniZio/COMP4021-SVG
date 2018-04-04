@@ -47,6 +47,7 @@ class BubbleManager extends GameManager {
       },
       gameover (manager) {
         SVG.get('restart_button').click(() => manager.reset())
+        SVG.get('replay_button').click(() => manager.reset('game'))
       }
     }
   }
