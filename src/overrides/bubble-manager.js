@@ -87,13 +87,13 @@ class BubbleManager extends GameManager {
             x: getRandomInt(10, 900),
             y: getRandomInt(10, 400),
             svg: SVG.get('booster').clone(),
-            selfDestructTime: getRandomInt(2, 10)
+            selfDestructTime: getRandomInt(10, 30)
           })
           : new Food({
             x: getRandomInt(10, 990),
             y: getRandomInt(10, 490),
             svg: SVG.get('food').clone(),
-            selfDestructTime: getRandomInt(2, 10)
+            selfDestructTime: getRandomInt(10, 30)
           })
       )
     }, 3000);

@@ -80,16 +80,33 @@ class Player extends EdibleObject {
 
   move(frameTime) {
     if (this.moveW) {
-      this.y -= 5 * this.speedMultiplier;
+      this.y -= 5 * this.speedMultiplier / this.size;
     }
     if (this.moveS) {
-      this.y += 5 * this.speedMultiplier;
+      this.y += 5 * this.speedMultiplier / this.size;
     }
     if (this.moveA) {
-      this.x -= 5 * this.speedMultiplier;
+      this.x -= 5 * this.speedMultiplier / this.size;
     }
     if (this.moveD) {
-      this.x += 5 * this.speedMultiplier;
+      this.x += 5 * this.speedMultiplier / this.size;
+    }
+
+    if (this.x > 1000 - this.size * 100) {
+      this.x = 1000 - this.size * 100;
+      this.gameManager.playMusicBangWall()
+    }
+    if (this.y > 500 - this.size * 100) {
+      this.y = 500 - this.size * 100;
+      this.gameManager.playMusicBangWall()
+    }
+    if (this.x < 0) {
+      this.x = 0;
+      this.gameManager.playMusicBangWall()
+    }
+    if (this.y < 0) {
+      this.y = 0;
+      this.gameManager.playMusicBangWall()
     }
     this.svg.animate(frameTime).move(this.x, this.y);
   }
@@ -118,12 +135,13 @@ class Player extends EdibleObject {
 
         let minDis = (this.size - edible.size) * 50;
         let dis = Math.sqrt(Math.pow(ccx - cx, 2) + Math.pow(ccy - cy, 2));
-        if (dis <= minDis)
-        {
+        if (dis <= minDis) {
           edible.eatenBy(this);
         }
       }
-      else edible.eatenBy(this);
+      else {
+        edible.eatenBy(this);
+      }
     }
   }
 
@@ -136,7 +154,7 @@ class Player extends EdibleObject {
     }
     else {
       setTimeout(function () {
-        GameManager.player1.speedMultiplier /= speedMultiplier;
+        GameManager.player2.speedMultiplier /= speedMultiplier;
       }, 5000);
     }
   }
