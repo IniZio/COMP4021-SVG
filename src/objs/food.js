@@ -36,7 +36,7 @@ class Food extends EdibleObject {
     return null;
   }
 
-  static get TypeName() {
+  get TypeName() {
     return 'Food';
   }
 }

@@ -46,7 +46,7 @@ class EdibleObject extends GameObject {
     return null;
   }
 
-  static get TypeName() {
+  get TypeName() {
     return 'EdibleObject';
   }
 };

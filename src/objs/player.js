@@ -109,16 +109,36 @@ class Player extends EdibleObject {
    */
   tryEat(edible) {
     if (edible.size && this.size > edible.size) {
-      // TODO: Do eat
-      edible.eatenBy(this);
+      if (edible.TypeName === 'Player') {
+        let cx = this.x + this.size / 2;
+        let cy = this.y + this.size / 2;
+
+        let ccx = edible.x + edible.size / 2;
+        let ccy = edible.y + edible.size / 2;
+
+        let minDis = (this.size - edible.size) * 50;
+        let dis = Math.sqrt(Math.pow(ccx - cx, 2) + Math.pow(ccy - cy, 2));
+        if (dis <= minDis)
+        {
+          edible.eatenBy(this);
+        }
+      }
+      else edible.eatenBy(this);
     }
   }
 
   boostSpeed(speedMultiplier) {
     this.speedMultiplier *= speedMultiplier;
-    setTimeout(function () {
-      this.speedMultiplier /= speedMultiplier;
-    }, 1000);
+    if (!this.playerNo || this.playerNo === 1) {
+      setTimeout(function () {
+        GameManager.player1.speedMultiplier /= speedMultiplier;
+      }, 5000);
+    }
+    else {
+      setTimeout(function () {
+        GameManager.player1.speedMultiplier /= speedMultiplier;
+      }, 5000);
+    }
   }
 
   /**
@@ -222,7 +242,7 @@ class Player extends EdibleObject {
     return null;
   }
 
-  static get TypeName() {
+  get TypeName() {
     return 'Player';
   }
 };
