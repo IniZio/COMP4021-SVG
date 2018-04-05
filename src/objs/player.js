@@ -91,6 +91,23 @@ class Player extends EdibleObject {
     if (this.moveD) {
       this.x += 5 * this.speedMultiplier / this.size;
     }
+
+    if (this.x > 1000 - this.size * 100) {
+      this.x = 1000 - this.size * 100;
+      this.gameManager.bangWallMusic.play();
+    }
+    if (this.y > 500 - this.size * 100) {
+      this.y = 500 - this.size * 100;
+      this.gameManager.bangWallMusic.play();
+    }
+    if (this.x < 0) {
+      this.x = 0;
+      this.gameManager.bangWallMusic.play();
+    }
+    if (this.y < 0) {
+      this.y = 0;
+      this.gameManager.bangWallMusic.play();
+    }
     this.svg.animate(frameTime).move(this.x, this.y);
   }
 
@@ -125,7 +142,7 @@ class Player extends EdibleObject {
       else {
         edible.eatenBy(this);
         if (edible.TypeName === 'Food')
-        this.gameManager.foodEatingMusic.play();
+          this.gameManager.foodEatingMusic.play();
       }
     }
   }
