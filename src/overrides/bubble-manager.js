@@ -19,7 +19,7 @@ class BubbleManager extends GameManager {
       },
       game(manager) {
         const MILLI_SEC = 1000
-        const GAME_TIME = 30 * MILLI_SEC
+        const GAME_TIME = 300 * MILLI_SEC
 
         manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone(), playerNo: 1})
         manager.addGameObject(manager.player1)

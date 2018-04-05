@@ -1,7 +1,9 @@
 import SVGObject from './SVGObject';
 import GameObject from "../primitives/game-object";
+import EdibleObject from "./edibleObject";
+import Trail from "./trail";
 
-class Player extends GameObject {
+class Player extends EdibleObject {
   constructor(opt) {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 200, 250, 100, 100);
@@ -41,6 +43,21 @@ class Player extends GameObject {
 
   }
 
+  /**
+   * Called when the edible object is eaten by a player.
+   * Apply suitable effect to the player,
+   * then remove itself.
+   *
+   * Should be implemented by subclass.
+   *
+   * @param player Player object eating this EdibleObject object.
+   */
+  eatenBy(player) {
+    if (player === null) {
+      super.eatenBy(null);
+    }
+    //TODO Game over
+  }
 
   get score() {
     //TODO Adjust player score display here
@@ -88,13 +105,9 @@ class Player extends GameObject {
    * @param edible EdibleObject object to be tested.
    */
   tryEat(edible) {
-    //TODO Adjust eating trigger distance here
-    a = edible.center.x - this.center.x;
-    b = edible.center.y - this.center.y;
-
-    distance = Math.sqrt(a * a + b * b);
-    if (distance <= this.svgObj.sizeX / 2) {
-      edible.eatenBy(player);
+    if (edible.size && this.size > edible.size) {
+      // TODO: Do eat
+      edible.eatenBy(this);
     }
   }
 
@@ -114,11 +127,11 @@ class Player extends GameObject {
     this.size += amount / 100;
     this.svgObj.sizeX = this.svgObj.svgSizeX * this.size;
     this.svgObj.sizeY = this.svgObj.svgSizeX * this.size;
-    this.svgObj.transform(''+0+'s', ''+0.025 + 's');
+    this.svgObj.transform('' + 0 + 's', '' + 0.025 + 's');
   }
 
   putTrail() {
-    if (!opt.playerNo || opt.playerNo == 1) {
+    if (!this.playerNo || this.playerNo === 1) {
       // Player 1
       this.gameManager.emit('player1.putTrail');
     }
@@ -133,8 +146,19 @@ class Player extends GameObject {
     if (this.putDownTrailTimer >= this.putDownTrailTime) {
       this.putDownTrailTimer = 0;
       //TODO put down trail
+      if (!this.playerNo || this.playerNo === 1) {
+        this.gameManager.addGameObject(
+            new Trail({svg: SVG.get("trail1").clone().move(this.x, this.y)}));
+      }
+      else {
+        this.gameManager.addGameObject(
+            new Trail({svg: SVG.get("trail2").clone().move(this.x, this.y)}));
+      }
     }
     this.move(frameTime);
+    this.gameManager.collisions[this.id].map(obj => {
+      this.tryEat(obj);
+    });
   }
 
   /**

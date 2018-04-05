@@ -1,11 +1,12 @@
 import SVGObject from './SVGObject'
-import Edible from './edibleObject'
+import EdibleObject from './edibleObject'
 
-class SpeedBooster extends Edible {
+class SpeedBooster extends EdibleObject {
   constructor(opt) {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 0, 0, 20, 30);
     this.speedMultiplier = 1.5;
+    this.size = 0;
   }
 
   /**
@@ -19,7 +20,7 @@ class SpeedBooster extends Edible {
    */
   eatenBy(player) {
     player.boostSpeed(this.speedMultiplier);
-    this.svgObj.domNode.remove();
+    this.svg.remove();
   }
 
   update(frameTime) {

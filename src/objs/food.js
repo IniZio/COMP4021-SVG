@@ -1,11 +1,12 @@
 import SVGObject from './SVGObject'
-import Edible from './edibleObject'
+import EdibleObject from './edibleObject'
 
-class Food extends Edible {
+class Food extends EdibleObject {
   constructor(opt) {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 0, 0, 35, 30);
     this.gain = 10;
+    this.size = 0;
   }
 
   /**
@@ -19,6 +20,7 @@ class Food extends Edible {
    */
   eatenBy(player) {
     player.grow(this.gain);
+    this.svg.remove();
   }
 
   update(frameTime) {

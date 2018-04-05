@@ -14,7 +14,9 @@ class EdibleObject extends GameObject {
   constructor(opt) {
     super(...arguments);
     //TODO implement
-    this.selfDestructTime = opt.selfDestructTime;
+    if (opt.selfDestructTime)
+      this.selfDestructTime = opt.selfDestructTime;
+    else this.selfDestructTime = 0xFFFFFFFFFFFFFFFF;
     this.selfDestructTimer = 0;
   }
 
@@ -30,6 +32,7 @@ class EdibleObject extends GameObject {
   eatenBy(player) {
     if (player === null) {
       //TODO self destruction
+      this.svg.remove();
     }
     throw new Error("Function EdibleObject.eatenBy is not implemented");
   }
@@ -37,7 +40,6 @@ class EdibleObject extends GameObject {
   update(frameTime) {
     this.selfDestructTimer += frameTime;
     if (this.selfDestructTimer >= this.selfDestructTime) {
-      //TODO: self destruction
       eatenBy(null);
     }
   }
