@@ -158,29 +158,32 @@ class Player extends EdibleObject {
   }
 
   update(frameTime) {
-    if (this.size < 0.1)
-      if (!this.playerNo || this.playerNo === 1) {
-        this.emit('player1.die')
-      }
-      else {
-        this.emit('player2.die')
-      }
+    if (this.gameManager.scene !== 'gameover') {
 
-    this.putDownTrailTimer += frameTime;
-    if (this.putDownTrailTimer >= this.putDownTrailTime) {
-      this.putDownTrailTimer = 0;
-      //TODO put down trail
-      if (!this.playerNo || this.playerNo === 1) {
-        this.emit('player1.putTrail')
+      if (this.size < 0.1)
+        if (!this.playerNo || this.playerNo === 1) {
+          this.emit('player1.die')
+        }
+        else {
+          this.emit('player2.die')
+        }
+
+      this.putDownTrailTimer += frameTime;
+      if (this.putDownTrailTimer >= this.putDownTrailTime) {
+        this.putDownTrailTimer = 0;
+        //TODO put down trail
+        if (!this.playerNo || this.playerNo === 1) {
+          this.emit('player1.putTrail')
+        }
+        else {
+          this.emit('player2.putTrail')
+        }
       }
-      else {
-        this.emit('player2.putTrail')
-      }
+      this.move(frameTime);
+      this.gameManager.collisions[this.id].map(obj => {
+        this.tryEat(obj);
+      });
     }
-    this.move(frameTime);
-    this.gameManager.collisions[this.id].map(obj => {
-      this.tryEat(obj);
-    });
   }
 
   /**
