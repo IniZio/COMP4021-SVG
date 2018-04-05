@@ -1,20 +1,3 @@
 g[id$="button"] {
   cursor: pointer;
 }
-
-@keyframes shake-updown{
-    0%  { transform: translateY(0);}
-    25% { transform: translateY(-1%);}
-    75% { transform: translateY(2%);}
-    100%{ transform: translateY(-1%);}
-}
-
-#single_player:hover {
-    animation: shake-updown 0.15s;
-    animation-iteration-count: 2;
-}
-
-#play_button:hover{
-    animation: shake-updown 0.15s;
-    animation-iteration-count: 2;
-}
