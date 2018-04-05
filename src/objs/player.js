@@ -60,6 +60,7 @@ class Player extends GameObject {
   move(frameTime) {
     if (this.moveW) {
       this.y -= 5 * this.speedMultiplier;
+      this.emit('player1.putTrail')
     }
     if (this.moveS) {
       this.y += 5 * this.speedMultiplier;

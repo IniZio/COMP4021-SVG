@@ -24,6 +24,10 @@ class GameObject {
     );
   }
 
+  emit (event) {
+    this.gameManager.listeners[event]()
+  }
+
   /**
    * Get coordinate of center point of the GameObject
    *

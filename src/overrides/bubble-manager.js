@@ -23,9 +23,9 @@ class BubbleManager extends GameManager {
 
         manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
         manager.addGameObject(manager.player1)
-        // manager.addEventListener('player1.putTrail', function(){
-        //
-        // })
+        manager.addEventListener('player1.putTrail', function(){
+          console.log('going to put trail')
+        })
 
         new ProgressBar.Line('#timer_bar', {
           strokeWidth: 4,
