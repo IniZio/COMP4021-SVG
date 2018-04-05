@@ -77,7 +77,6 @@ class Player extends EdibleObject {
   move(frameTime) {
     if (this.moveW) {
       this.y -= 5 * this.speedMultiplier;
-      this.emit('player1.putTrail')
     }
     if (this.moveS) {
       this.y += 5 * this.speedMultiplier;
@@ -133,11 +132,23 @@ class Player extends EdibleObject {
   putTrail() {
     if (!this.playerNo || this.playerNo === 1) {
       // Player 1
-      this.gameManager.emit('player1.putTrail');
+      setTimeout(this.gameManager.addGameObject(
+          new Trail({
+            svg: SVG.get("trail1").clone(),
+            harm: 50,
+            x: this.x,
+            y: this.y
+          })), 1000);
     }
     else {
       // Player 2
-      this.gameManager.emit('player2.putTrail');
+      setTimeout(this.gameManager.addGameObject(
+          new Trail({
+            svg: SVG.get("trail2").clone().move(this.x, this.y),
+            harm: 50,
+            x: this.x,
+            y: this.y
+          })), 1000);
     }
   }
 
@@ -147,12 +158,10 @@ class Player extends EdibleObject {
       this.putDownTrailTimer = 0;
       //TODO put down trail
       if (!this.playerNo || this.playerNo === 1) {
-        this.gameManager.addGameObject(
-            new Trail({svg: SVG.get("trail1").clone().move(this.x, this.y)}));
+        this.emit('player1.putTrail')
       }
       else {
-        this.gameManager.addGameObject(
-            new Trail({svg: SVG.get("trail2").clone().move(this.x, this.y)}));
+        this.emit('player2.putTrail')
       }
     }
     this.move(frameTime);
