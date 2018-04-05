@@ -30,6 +30,7 @@ class GameManager {
     this.$generators = {}
     this.$intervals = []
     this.gameObjects = []
+    this.listeners = {}
 
     // animation frame compatibility
     if (!window.requestAnimFrame) {
@@ -125,6 +126,10 @@ class GameManager {
     SVG.get(this.$el).add(gameObj.svg)
     // Note: This makes player to be always on the very top;
     this.player1.svg.front()
+  }
+
+  addEventListener (event, callback) {
+    this.listeners[event] = callback
   }
 
   scanCollisions () {
