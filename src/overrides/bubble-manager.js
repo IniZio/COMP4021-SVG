@@ -94,7 +94,6 @@ class BubbleManager extends GameManager {
             selfDestructTime: getRandomInt(10, 30)
           })
       )
-      this.foodAppearMusic.play();
     }, 5000);
     this.$intervals.push(scheduler);
     return scheduler;
