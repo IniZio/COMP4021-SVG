@@ -9,6 +9,11 @@ class SpeedBooster extends EdibleObject {
     this.size = 0.1;
   }
 
+  init () {
+    super.init(...arguments)
+    this.gameManager.playMusicFoodAppear()
+  }
+
   /**
    * Called when the edible object is eaten by a player.
    * Apply suitable effect to the player,
@@ -23,6 +28,7 @@ class SpeedBooster extends EdibleObject {
     {
       super.eatenBy(null);
     }
+    this.gameManager.playMusicBooster()
     player.boostSpeed(this.speedMultiplier);
     this.gameManager.removeGameObjectById(this.id);
   }
