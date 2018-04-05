@@ -19,12 +19,18 @@ class BubbleManager extends GameManager {
       },
       game(manager) {
         const MILLI_SEC = 1000
-        const GAME_TIME = 3 * MILLI_SEC
+        const GAME_TIME = 30 * MILLI_SEC
 
-        manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
+        manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone(), playerNo: 1})
         manager.addGameObject(manager.player1)
         manager.addEventListener('player1.putTrail', function(){
-          console.log('going to put trail')
+          console.log('Player1 going to put trail')
+        })
+
+        manager.player2 = new Player({x: 0, y: 10, svg: SVG.get('main2').clone(), playerNo: 2})
+        manager.addGameObject(manager.player2)
+        manager.addEventListener('player2.putTrail', function(){
+          console.log('Player2 going to put trail')
         })
 
         new ProgressBar.Line('#timer_bar', {
