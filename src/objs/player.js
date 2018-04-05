@@ -1,7 +1,9 @@
 import SVGObject from './SVGObject';
 import GameObject from "../primitives/game-object";
+import EdibleObject from "./edibleObject";
+import Trail from "./trail";
 
-class Player extends GameObject {
+class Player extends EdibleObject {
   constructor(opt) {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 200, 250, 100, 100);
@@ -12,7 +14,6 @@ class Player extends GameObject {
     this.svg.move(opt.x, opt.y);
     this.speedMultiplier = 1;
     this.size = 1;
-    this.putDownTrailTime = opt.putDownTrailTime;
     this.putDownTrailTimer = 0;
 
     this.moveW = false;
@@ -41,6 +42,26 @@ class Player extends GameObject {
 
   }
 
+  /**
+   * Called when the edible object is eaten by a player.
+   * Apply suitable effect to the player,
+   * then remove itself.
+   *
+   * Should be implemented by subclass.
+   *
+   * @param player Player object eating this EdibleObject object.
+   */
+  eatenBy(player) {
+    if (player === null) {
+      super.eatenBy(null);
+    }
+    if (!this.playerNo || this.playerNo === 1) {
+      this.emit('player1.die')
+    }
+    else {
+      this.emit('player2.die')
+    }
+  }
 
   get score() {
     //TODO Adjust player score display here
@@ -60,7 +81,6 @@ class Player extends GameObject {
   move(frameTime) {
     if (this.moveW) {
       this.y -= 5 * this.speedMultiplier;
-      this.emit('player1.putTrail')
     }
     if (this.moveS) {
       this.y += 5 * this.speedMultiplier;
@@ -88,21 +108,37 @@ class Player extends GameObject {
    * @param edible EdibleObject object to be tested.
    */
   tryEat(edible) {
-    //TODO Adjust eating trigger distance here
-    a = edible.center.x - this.center.x;
-    b = edible.center.y - this.center.y;
+    if (edible.size && this.size > edible.size) {
+      if (edible.TypeName === 'Player') {
+        let cx = this.x + this.size / 2;
+        let cy = this.y + this.size / 2;
 
-    distance = Math.sqrt(a * a + b * b);
-    if (distance <= this.svgObj.sizeX / 2) {
-      edible.eatenBy(player);
+        let ccx = edible.x + edible.size / 2;
+        let ccy = edible.y + edible.size / 2;
+
+        let minDis = (this.size - edible.size) * 50;
+        let dis = Math.sqrt(Math.pow(ccx - cx, 2) + Math.pow(ccy - cy, 2));
+        if (dis <= minDis)
+        {
+          edible.eatenBy(this);
+        }
+      }
+      else edible.eatenBy(this);
     }
   }
 
   boostSpeed(speedMultiplier) {
     this.speedMultiplier *= speedMultiplier;
-    setTimeout(function () {
-      this.speedMultiplier /= speedMultiplier;
-    }, 5000);
+    if (!this.playerNo || this.playerNo === 1) {
+      setTimeout(function () {
+        GameManager.player1.speedMultiplier /= speedMultiplier;
+      }, 5000);
+    }
+    else {
+      setTimeout(function () {
+        GameManager.player1.speedMultiplier /= speedMultiplier;
+      }, 5000);
+    }
   }
 
   /**
@@ -112,29 +148,87 @@ class Player extends GameObject {
    */
   grow(amount) {
     this.size += amount / 100;
-    this.svgObj.sizeX = this.svgObj.svgSizeX * this.size;
-    this.svgObj.sizeY = this.svgObj.svgSizeX * this.size;
-    this.svgObj.transform(''+0+'s', ''+0.025 + 's');
+    this.svg.size(100 * this.size);
   }
 
   putTrail() {
-    if (!opt.playerNo || opt.playerNo == 1) {
+    if (!this.playerNo || this.playerNo === 1) {
       // Player 1
-      this.gameManager.emit('player1.putTrail');
+      var xxx = this.x + 50 * this.size;
+      var yyy = this.y + 50 * this.size;
+      setTimeout(function () {
+        GameManager.addGameObject(
+            new Trail({
+              svg: SVG.get("trail1").clone().move(xxx, yyy),
+              harm: 1,
+              x: xxx,
+              y: yyy,
+              selfDestructTime: 5
+            }));
+      }, 500);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
     }
     else {
       // Player 2
-      this.gameManager.emit('player2.putTrail');
+      var xxx = this.x + 50 * this.size;
+      var yyy = this.y + 50 * this.size;
+      setTimeout(function () {
+        GameManager.addGameObject(
+            new Trail({
+              svg: SVG.get("trail2").clone().move(xxx, yyy),
+              harm: 1,
+              x: xxx,
+              y: yyy,
+              selfDestructTime: 5
+            }));
+      }, 500);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
     }
   }
 
   update(frameTime) {
-    this.putDownTrailTimer += frameTime;
-    if (this.putDownTrailTimer >= this.putDownTrailTime) {
-      this.putDownTrailTimer = 0;
-      //TODO put down trail
+
+    if (this.size <= 0)
+      if (!this.playerNo || this.playerNo === 1) {
+        this.emit('player1.die')
+      }
+      else {
+        this.emit('player2.die')
+      }
+
+    this.svg.front();
+    this.gameManager.player2.svg.front();
+
+    if (!this.playerNo) {
+      this.svg.front();
     }
+    else if (this.playerNo === 1) {
+      if (this.gameManager.player2.size < this.size) {
+        this.svg.front();
+      }
+      else {
+        this.gameManager.player2.svg.front();
+      }
+    }
+
+    this.putDownTrailTimer += frameTime;
+    if (this.gameManager.scene !== 'gameover')
+      if (this.putDownTrailTimer >= this.putDownTrailTime) {
+        this.putDownTrailTimer = 0;
+        //TODO put down trail
+        if (!this.playerNo || this.playerNo === 1) {
+          this.emit('player1.putTrail')
+        }
+        else {
+          this.emit('player2.putTrail')
+        }
+      }
     this.move(frameTime);
+    this.gameManager.collisions[this.id].map(obj => this.tryEat(obj));
+
+    super.update();
   }
 
   /**
@@ -148,7 +242,7 @@ class Player extends GameObject {
     return null;
   }
 
-  static get TypeName() {
+  get TypeName() {
     return 'Player';
   }
 };

@@ -73,7 +73,7 @@ class SVGObject {
     };
   }
 
-  static get TypeName() {
+  get TypeName() {
     return 'SVGObject';
   }
 };
