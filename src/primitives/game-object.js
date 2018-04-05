@@ -1,10 +1,14 @@
+import uuid from 'uuid/v4'
 import autoBind from 'auto-bind'
 
 class GameObject {
   constructor(opt) {
+    this.id = uuid()
     const {controls} = opt;
     Object.assign(this, opt)
     this.svg.move(this.x, this.y)
+
+    this.shortcuts = {}
 
     autoBind(this)
     return this
@@ -18,6 +22,10 @@ class GameObject {
     throw new Error(
         "Function GameObject.update is not implemented."
     );
+  }
+
+  emit (event) {
+    this.gameManager.listeners[event]()
   }
 
   /**

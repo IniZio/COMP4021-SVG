@@ -14,16 +14,31 @@ class Player extends GameObject {
     this.size = 1;
     this.putDownTrailTime = opt.putDownTrailTime;
     this.putDownTrailTimer = 0;
-    if (!opt.playerNo || opt.playerNo == 1) {
-      // Player 1
-    }
-    else {
-      // Player 2
-    }
+
     this.moveW = false;
     this.moveS = false;
     this.moveA = false;
     this.moveD = false;
+
+    if (!opt.playerNo || opt.playerNo == 1) {
+      // Player 1
+      this.shortcuts = {
+        'w': t => this.moveW = t,
+        'a': t => this.moveA = t,
+        's': t => this.moveS = t,
+        'd': t => this.moveD = t
+      }
+    }
+    else {
+      // Player 2
+      this.shortcuts = {
+        'up': t => this.moveW = t,
+        'left': t => this.moveA = t,
+        'down': t => this.moveS = t,
+        'right': t => this.moveD = t
+      }
+    }
+
   }
 
 
@@ -45,6 +60,7 @@ class Player extends GameObject {
   move(frameTime) {
     if (this.moveW) {
       this.y -= 5 * this.speedMultiplier;
+      this.emit('player1.putTrail')
     }
     if (this.moveS) {
       this.y += 5 * this.speedMultiplier;
