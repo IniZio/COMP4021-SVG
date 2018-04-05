@@ -128,6 +128,12 @@ class GameManager {
     this.player1.svg.front()
   }
 
+  removeGameObjectById(gameObjId){
+    let gameObj = this.gameObjects.filter(obj => obj.id === gameObjId);
+    this.gameObjects = this.gameObjects.filter(obj => obj.id !== gameObjId);
+    gameObj.svg.remove();
+  }
+
   addEventListener (event, callback) {
     this.listeners[event] = callback
   }
