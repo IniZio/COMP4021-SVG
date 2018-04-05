@@ -6,7 +6,7 @@ class SpeedBooster extends EdibleObject {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 0, 0, 20, 30);
     this.speedMultiplier = 1.5;
-    this.size = 0;
+    this.size = 0.1;
   }
 
   /**
@@ -19,6 +19,10 @@ class SpeedBooster extends EdibleObject {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
+    if (player === null)
+    {
+      super.eatenBy(null);
+    }
     player.boostSpeed(this.speedMultiplier);
     this.gameManager.removeGameObjectById(this.id);
   }

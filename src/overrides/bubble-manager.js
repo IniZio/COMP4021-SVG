@@ -22,7 +22,7 @@ class BubbleManager extends GameManager {
         const GAME_TIME = 300 * MILLI_SEC
 
         manager.player1 = new Player({
-          x: 0, y: 10, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 0.2
+          x: 50, y: 100, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 0.2
         })
         manager.addGameObject(manager.player1)
         manager.addEventListener('player1.putTrail', function () {
@@ -35,7 +35,7 @@ class BubbleManager extends GameManager {
         })
 
         manager.player2 = new Player({
-          x: 0, y: 10, svg: SVG.get('main2').clone(), playerNo: 2, putDownTrailTime: 0.2
+          x: 600, y: 100, svg: SVG.get('main2').clone(), playerNo: 2, putDownTrailTime: 0.2
         })
         manager.addGameObject(manager.player2)
         manager.addEventListener('player2.putTrail', function () {
@@ -85,16 +85,16 @@ class BubbleManager extends GameManager {
             x: getRandomInt(10, 990),
             y: getRandomInt(10, 490),
             svg: SVG.get('booster').clone(),
-            selfDestructTime: getRandomInt(2000, 10000)
+            selfDestructTime: getRandomInt(2, 10)
           })
           : new Food({
             x: getRandomInt(10, 990),
             y: getRandomInt(10, 490),
             svg: SVG.get('food').clone(),
-            selfDestructTime: getRandomInt(2000, 10000)
+            selfDestructTime: getRandomInt(2, 10)
           })
       )
-    }, 3000);
+    }, 1000);
     this.$intervals.push(scheduler);
     return scheduler;
   }

@@ -30,17 +30,13 @@ class EdibleObject extends GameObject {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
-    if (player === null) {
-      //TODO self destruction
-      this.svg.remove();
-    }
     throw new Error("Function EdibleObject.eatenBy is not implemented");
   }
 
   update(frameTime) {
     this.selfDestructTimer += frameTime;
     if (this.selfDestructTimer >= this.selfDestructTime) {
-      eatenBy(null);
+      this.gameManager.removeGameObjectById(this.id);
     }
   }
 

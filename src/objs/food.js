@@ -6,7 +6,7 @@ class Food extends EdibleObject {
     super(...arguments);
     this.svgObj = new SVGObject(opt.svg.node, 0, 0, 35, 30);
     this.gain = 10;
-    this.size = 0;
+    this.size = 0.1;
   }
 
   /**
@@ -19,6 +19,9 @@ class Food extends EdibleObject {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
+    if (player === null) {
+      super.eatenBy(null);
+    }
     player.grow(this.gain);
     this.gameManager.removeGameObjectById(this.id);
   }

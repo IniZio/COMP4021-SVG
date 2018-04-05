@@ -12,7 +12,7 @@ class Trail extends EdibleObject {
     // Must use SVG.get('trail2')
       this.svgObj = new SVGObject(opt.svg.node, 700, 250, 10, 10);
     this.harm = opt.harm;
-    this.size = 0;
+    this.size = 0.1;
   }
 
   /**
@@ -25,7 +25,10 @@ class Trail extends EdibleObject {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
-    //TODO: Eaten by player
+    if (player === null){
+      super.eatenBy(null);
+    }
+    player.grow(this.harm);
     this.gameManager.removeGameObjectById(this.id);
   }
 
