@@ -26,7 +26,7 @@ class Trail extends EdibleObject {
    */
   eatenBy(player) {
     //TODO: Eaten by player
-    this.svg.remove();
+    this.gameManager.removeGameObjectById(this.id);
   }
 
   update(frameTime) {

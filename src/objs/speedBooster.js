@@ -20,7 +20,7 @@ class SpeedBooster extends EdibleObject {
    */
   eatenBy(player) {
     player.boostSpeed(this.speedMultiplier);
-    this.svg.remove();
+    this.gameManager.removeGameObjectById(this.id);
   }
 
   update(frameTime) {

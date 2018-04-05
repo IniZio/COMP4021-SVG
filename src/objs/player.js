@@ -159,7 +159,6 @@ class Player extends EdibleObject {
 
   update(frameTime) {
     if (this.gameManager.scene !== 'gameover') {
-
       if (this.size < 0.1)
         if (!this.playerNo || this.playerNo === 1) {
           this.emit('player1.die')
@@ -180,9 +179,7 @@ class Player extends EdibleObject {
         }
       }
       this.move(frameTime);
-      this.gameManager.collisions[this.id].map(obj => {
-        this.tryEat(obj);
-      });
+      this.gameManager.collisions[this.id].map(obj => this.tryEat(obj));
     }
   }
 

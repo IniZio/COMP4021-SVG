@@ -20,7 +20,7 @@ class Food extends EdibleObject {
    */
   eatenBy(player) {
     player.grow(this.gain);
-    this.svg.remove();
+    this.gameManager.removeGameObjectById(this.id);
   }
 
   update(frameTime) {
