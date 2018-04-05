@@ -4,7 +4,6 @@ import EdibleObject from './edibleObject'
 class SpeedBooster extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 20, 30);
     this.speedMultiplier = 1.5;
     this.size = 0.1;
   }
@@ -12,6 +11,9 @@ class SpeedBooster extends EdibleObject {
   init () {
     super.init(...arguments)
     this.gameManager.playMusicFoodAppear()
+    this.svg.move(this.x, this.y)
+    this.svg.size(100);
+    this.svg.animate(this.selfDestructTime * 1000).size(0);
   }
 
   /**
@@ -35,12 +37,6 @@ class SpeedBooster extends EdibleObject {
 
   update(frameTime) {
     super.update(frameTime);
-  }
-
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

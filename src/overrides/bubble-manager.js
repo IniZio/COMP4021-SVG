@@ -72,7 +72,8 @@ class BubbleManager extends GameManager {
       },
       gameover(manager) {
         manager.playMusicGameOver()
-
+        document.getElementById("winner").innerHTML =
+            'Player ' + ((manager.lastP1Score > manager.lastP2Score) ? '1' : '2') + ' Won!'
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -82,20 +83,21 @@ class BubbleManager extends GameManager {
   scheduleProps() {
     super.scheduleProps(...arguments)
     const scheduler = setInterval(() => {
-      this.addGameObject(getRandomInt(-1, 2)
-          ? new SpeedBooster({
-            x: getRandomInt(10, 900),
-            y: getRandomInt(10, 400),
-            svg: SVG.get('booster').clone(),
-            selfDestructTime: getRandomInt(10, 30)
-          })
-          : new Food({
-            x: getRandomInt(10, 990),
-            y: getRandomInt(10, 490),
-            svg: SVG.get('food').clone(),
-            selfDestructTime: getRandomInt(10, 30)
-          })
-      )
+      for (var i = 0; i < 4; ++i)
+        this.addGameObject(getRandomInt(-1, 2)
+            ? new Food({
+              x: getRandomInt(10, 990),
+              y: getRandomInt(10, 490),
+              svg: SVG.get('food').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+            : new SpeedBooster({
+              x: getRandomInt(10, 900),
+              y: getRandomInt(10, 400),
+              svg: SVG.get('booster').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+        )
     }, 3000);
     this.$intervals.push(scheduler);
     return scheduler;
@@ -103,9 +105,13 @@ class BubbleManager extends GameManager {
 
   update() {
     super.update(...arguments)
+    if (this.player1 && this.player1.score !== 0)
+      this.lastP1Score = this.player1.score;
+    if (this.player2 && this.player1.score !== 0)
+      this.lastP2Score = this.player2.score;
     if (this.scene === 'game' || this.scene === 'gameover') {
-      if (this.player1) document.getElementById('score_1').textContent = this.player1.score
-      if (this.player2) document.getElementById('score_2').textContent = this.player2.score
+      if (this.lastP1Score) document.getElementById('score_1').textContent = this.lastP1Score.toString()
+      if (this.lastP2Score) document.getElementById('score_2').textContent = this.lastP2Score.toString()
     }
   }
 }
