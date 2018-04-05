@@ -18,7 +18,7 @@ class Food extends Edible {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
-    palyer.grow(this.gain);
+    player.grow(this.gain);
   }
 
   update(frameTime) {
