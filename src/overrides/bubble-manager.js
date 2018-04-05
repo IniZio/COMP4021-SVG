@@ -73,7 +73,7 @@ class BubbleManager extends GameManager {
       gameover(manager) {
         manager.playMusicGameOver()
         document.getElementById("winner").innerHTML =
-            'Player ' + ((manager.player1.score > manager.player2.score)? '1' : '2') + ' Won!'
+            'Player ' + ((manager.lastP1Score > manager.lastP2Score) ? '1' : '2') + ' Won!'
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -105,9 +105,13 @@ class BubbleManager extends GameManager {
 
   update() {
     super.update(...arguments)
+    if (this.player1 && this.player1.score !== 0)
+      this.lastP1Score = this.player1.score;
+    if (this.player2 && this.player1.score !== 0)
+      this.lastP2Score = this.player2.score;
     if (this.scene === 'game' || this.scene === 'gameover') {
-      if (this.player1) document.getElementById('score_1').textContent = this.player1.score
-      if (this.player2) document.getElementById('score_2').textContent = this.player2.score
+      if (this.lastP1Score) document.getElementById('score_1').textContent = this.lastP1Score.toString()
+      if (this.lastP2Score) document.getElementById('score_2').textContent = this.lastP2Score.toString()
     }
   }
 }

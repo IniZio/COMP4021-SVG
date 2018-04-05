@@ -64,6 +64,14 @@ class GameManager {
       }
     })
 
+    if (scene === 'gameover') {
+      this.removeGameObjectById(this.player1.id)
+      this.removeGameObjectById(this.player2.id)
+      this.player1 = null;
+      this.player2 = null;
+      this.listeners = {};
+    }
+
     // Kill schedulers
     this.$intervals.map(clearInterval)
     this.$intervals.length = 0
