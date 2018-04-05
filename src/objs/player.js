@@ -136,7 +136,7 @@ class Player extends EdibleObject {
     }
     else {
       setTimeout(function () {
-        GameManager.player1.speedMultiplier /= speedMultiplier;
+        GameManager.player2.speedMultiplier /= speedMultiplier;
       }, 5000);
     }
   }
