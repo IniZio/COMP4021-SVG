@@ -122,11 +122,16 @@ class Player extends EdibleObject {
           edible.eatenBy(this);
         }
       }
-      else edible.eatenBy(this);
+      else {
+        edible.eatenBy(this);
+        if (edible.TypeName === 'Food')
+        this.gameManager.foodEatingMusic.play();
+      }
     }
   }
 
   boostSpeed(speedMultiplier) {
+    this.gameManager.boosterMusic.play();
     this.speedMultiplier *= speedMultiplier;
     if (!this.playerNo || this.playerNo === 1) {
       setTimeout(function () {
