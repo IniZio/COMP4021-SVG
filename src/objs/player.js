@@ -136,9 +136,11 @@ class Player extends EdibleObject {
           new Trail({
             svg: SVG.get("trail1").clone(),
             harm: 50,
-            x: this.x,
-            y: this.y
+            x: this.x + 50 * this.size,
+            y: this.y + 50 * this.size
           })), 1000);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
     }
     else {
       // Player 2
@@ -146,13 +148,24 @@ class Player extends EdibleObject {
           new Trail({
             svg: SVG.get("trail2").clone().move(this.x, this.y),
             harm: 50,
-            x: this.x,
-            y: this.y
+            x: this.x + 50 * this.size,
+            y: this.y + 50 * this.size
           })), 1000);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
+
     }
   }
 
   update(frameTime) {
+    if (this.size < 0.1)
+      if (!this.playerNo || this.playerNo === 1) {
+        this.emit('player1.die')
+      }
+      else {
+        this.emit('player2.die')
+      }
+
     this.putDownTrailTimer += frameTime;
     if (this.putDownTrailTimer >= this.putDownTrailTime) {
       this.putDownTrailTimer = 0;

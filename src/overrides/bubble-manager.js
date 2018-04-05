@@ -21,18 +21,30 @@ class BubbleManager extends GameManager {
         const MILLI_SEC = 1000
         const GAME_TIME = 300 * MILLI_SEC
 
-        manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 2})
+        manager.player1 = new Player({
+          x: 0, y: 10, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 0.2
+        })
         manager.addGameObject(manager.player1)
-        manager.addEventListener('player1.putTrail', function(){
+        manager.addEventListener('player1.putTrail', function () {
           console.log('Player1 going to put trail')
           manager.player1.putTrail();
         })
+        manager.addEventListener('player1.die', function () {
+          // TODO Game Over
+          manager.scene !== 'gameover' && manager.reset('gameover')
+        })
 
-        manager.player2 = new Player({x: 0, y: 10, svg: SVG.get('main2').clone(), playerNo: 2, putDownTrailTime: 2})
+        manager.player2 = new Player({
+          x: 0, y: 10, svg: SVG.get('main2').clone(), playerNo: 2, putDownTrailTime: 0.2
+        })
         manager.addGameObject(manager.player2)
-        manager.addEventListener('player2.putTrail', function(){
+        manager.addEventListener('player2.putTrail', function () {
           console.log('Player2 going to put trail')
           manager.player2.putTrail();
+        })
+        manager.addEventListener('player2.die', function () {
+          // TODO Game Over
+          manager.scene !== 'gameover' && manager.reset('gameover')
         })
 
         new ProgressBar.Line('#timer_bar', {
@@ -87,7 +99,7 @@ class BubbleManager extends GameManager {
     return scheduler;
   }
 
-  update () {
+  update() {
     super.update(...arguments)
     if (this.scene === 'game' || this.scene === 'gameover') {
       if (this.player1) document.getElementById('score_1').textContent = this.player1.score
