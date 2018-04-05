@@ -110,11 +110,11 @@ class Player extends EdibleObject {
   tryEat(edible) {
     if (edible.size && this.size > edible.size) {
       if (edible.TypeName === 'Player') {
-        let cx = this.x + this.size / 2;
-        let cy = this.y + this.size / 2;
+        let cx = this.x + this.size * 50;
+        let cy = this.y + this.size * 50;
 
-        let ccx = edible.x + edible.size / 2;
-        let ccy = edible.y + edible.size / 2;
+        let ccx = edible.x + edible.size * 50;
+        let ccy = edible.y + edible.size * 50;
 
         let minDis = (this.size - edible.size) * 50;
         let dis = Math.sqrt(Math.pow(ccx - cx, 2) + Math.pow(ccy - cy, 2));
