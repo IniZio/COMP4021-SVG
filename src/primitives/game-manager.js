@@ -129,7 +129,7 @@ class GameManager {
   }
 
   removeGameObjectById(gameObjId){
-    let gameObj = this.gameObjects.filter(obj => obj.id === gameObjId);
+    let gameObj = this.gameObjects.find(obj => obj.id === gameObjId);
     this.gameObjects = this.gameObjects.filter(obj => obj.id !== gameObjId);
     gameObj.svg.remove();
   }
