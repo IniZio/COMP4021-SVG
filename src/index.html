@@ -8,25 +8,6 @@
   <link href="https://fonts.google.com/specimen/Chicle?selection.family=Chicle" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <title>Bubble Tail</title>
-
-  <style>
-    @keyframes shake-updown{
-        0%  { transform: translateY(0);}
-        25% { transform: translateY(-1%);}
-        75% { transform: translateY(2%);}
-        100%{ transform: translateY(-1%);}
-    }
-
-    #single_player:hover {
-        animation: shake-updown 0.15s;
-        animation-iteration-count: 2;
-    }
-  	
-    #play_button:hover{
-        animation: shake-updown 0.15s;
-        animation-iteration-count: 2;
-    }
-  </style>
 </head>
 
 <body>
@@ -157,8 +138,7 @@
                   </g>
               </g>
           </g>
-          <g id="additional_instruction1" transform="translate(20,5)" display="none">
-              <set attributeName="display" to="inline" begin="single_player.mouseover" end="single_player.mouseout" />
+          <g id="additional_instruction1" transform="translate(20,5)">
               <circle cx="80" cy="430" r="50" fill="url(#rad_grad1)" />
               <text text-anchor="middle" fill="black" x="190" y="400" font-size="25" font-family="Chicle serif" font-weight="bold">↙Player 1</text>
               <text text-anchor="middle" fill="black" x="190" y="440" font-size="25" font-family="Chicle serif" font-weight="bold">Booster↘</text>
@@ -186,8 +166,7 @@
                         stroke-linecap="round" fill="none" stroke="#FFFFFF" />
               </g>
           </g>
-          <g id="additional_instruction2" transform="translate(-20,5)" display="none">
-              <set attributeName="display" to="inline" begin="play_button.mouseover" end="play_button.mouseout" />
+          <g id="additional_instruction2" transform="translate(-20,5)">
               <circle cx="750" cy="420" r="40" fill="url(#rad_grad1)" />
               <circle cx="950" cy="420" r="40" fill="url(#rad_grad2)" />
               <text text-anchor="middle" fill="black" x="840" y="410" font-size="20" font-family="Chicle serif" font-weight="bold">←Player 1</text>
