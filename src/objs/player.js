@@ -80,16 +80,16 @@ class Player extends EdibleObject {
 
   move(frameTime) {
     if (this.moveW) {
-      this.y -= 5 * this.speedMultiplier;
+      this.y -= 5 * this.speedMultiplier / this.size;
     }
     if (this.moveS) {
-      this.y += 5 * this.speedMultiplier;
+      this.y += 5 * this.speedMultiplier / this.size;
     }
     if (this.moveA) {
-      this.x -= 5 * this.speedMultiplier;
+      this.x -= 5 * this.speedMultiplier / this.size;
     }
     if (this.moveD) {
-      this.x += 5 * this.speedMultiplier;
+      this.x += 5 * this.speedMultiplier / this.size;
     }
     this.svg.animate(frameTime).move(this.x, this.y);
   }
@@ -118,8 +118,7 @@ class Player extends EdibleObject {
 
         let minDis = (this.size - edible.size) * 50;
         let dis = Math.sqrt(Math.pow(ccx - cx, 2) + Math.pow(ccy - cy, 2));
-        if (dis <= minDis)
-        {
+        if (dis <= minDis) {
           edible.eatenBy(this);
         }
       }
