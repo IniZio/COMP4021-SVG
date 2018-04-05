@@ -145,9 +145,9 @@ class Player extends EdibleObject {
               y: yyy,
               selfDestructTime: 5
             }));
-        this.size -= 0.01;
-        this.svg.size(100 * this.size);
-      }, 100);
+      }, 500);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
     }
     else {
       // Player 2
@@ -162,9 +162,9 @@ class Player extends EdibleObject {
               y: yyy,
               selfDestructTime: 5
             }));
-        this.size -= 0.01;
-        this.svg.size(100 * this.size);
-      }, 100);
+      }, 500);
+      this.size -= 0.01;
+      this.svg.size(100 * this.size);
     }
   }
 
