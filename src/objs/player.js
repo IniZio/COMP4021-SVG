@@ -214,7 +214,6 @@ class Player extends EdibleObject {
       }
 
     this.svg.front();
-    this.gameManager.player2.svg.front();
 
     if (!this.playerNo) {
       this.svg.front();
@@ -223,9 +222,13 @@ class Player extends EdibleObject {
       if (this.gameManager.player2.size < this.size) {
         this.svg.front();
       }
-      else {
-        this.gameManager.player2.svg.front();
+      else this.gameManager.player2.svg.front()
+    }
+    else if (this.playerNo === 2) {
+      if (this.gameManager.player1.size < this.size) {
+        this.svg.front();
       }
+      else this.gameManager.player1.svg.front()
     }
 
     this.putDownTrailTimer += frameTime;
