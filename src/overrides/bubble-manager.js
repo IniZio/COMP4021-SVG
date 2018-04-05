@@ -1,6 +1,6 @@
 import SVG from 'svg.js'
 import ProgressBar from 'progressbar.js'
-
+import keyboard from 'keyboardjs'
 
 import {getRandomInt} from '../utils';
 import GameManager from '../primitives/game-manager';
@@ -19,57 +19,13 @@ class BubbleManager extends GameManager {
       },
       game(manager) {
         const MILLI_SEC = 1000
-        const GAME_TIME = 150 * MILLI_SEC
+        const GAME_TIME = 3 * MILLI_SEC
 
         manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
         manager.addGameObject(manager.player1)
         // manager.addEventListener('player1.putTrail', function(){
         //
         // })
-        document.getElementsByTagName('body')[0].onkeydown = function (e) {
-          switch (e.keyCode) {
-            case 87:
-              // 'w'
-              manager.player1.moveW = true;
-              break;
-            case 83:
-              // 's'
-              manager.player1.moveS = true;
-              break;
-            case 65:
-              // 'a'
-              manager.player1.moveA = true;
-              break;
-            case 68:
-              // 'd'
-              manager.player1.moveD = true;
-              break;
-            default:
-              break;
-          }
-        };
-        document.getElementsByTagName('body')[0].onkeyup = function (e) {
-          switch (e.keyCode) {
-            case 87:
-              // 'w'
-              manager.player1.moveW = false;
-              break;
-            case 83:
-              // 's'
-              manager.player1.moveS = false;
-              break;
-            case 65:
-              // 'a'
-              manager.player1.moveA = false;
-              break;
-            case 68:
-              // 'd'
-              manager.player1.moveD = false;
-              break;
-            default:
-              break;
-          }
-        };
 
         new ProgressBar.Line('#timer_bar', {
           strokeWidth: 4,
@@ -102,6 +58,7 @@ class BubbleManager extends GameManager {
   }
 
   scheduleProps() {
+    super.scheduleProps(...arguments)
     const scheduler = setInterval(() => {
       this.addGameObject(getRandomInt(-1, 2)
           ? new SpeedBooster({

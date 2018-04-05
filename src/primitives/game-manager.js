@@ -1,5 +1,6 @@
 import autoBind from 'auto-bind'
 import SVG from 'svg.js'
+import keyboard from 'keyboardjs'
 
 function didCollide (o1, o2) {
     var r1 = o1.rbox();    // Bounding box of first object
@@ -53,6 +54,15 @@ class GameManager {
 
   // Resets scene
   reset(scene = 'welcome') {
+    // Unbind old shortcuts
+    this.gameObjects.map(object => {
+      if (object.shortcuts) {
+        Object.keys(object.shortcuts).map(code => {
+          keyboard.unbind(code)
+        })
+      }
+    })
+
     // Kill schedulers
     this.$intervals.map(clearInterval)
     this.$intervals.length = 0
@@ -68,6 +78,21 @@ class GameManager {
 
     // Dynamic generator
     this.$generators[this.scene](this)
+
+    // Bind new shortcuts
+    this.gameObjects.map(object => {
+      if (object.shortcuts) {
+        Object.keys(object.shortcuts).map(code => {
+          keyboard.bind(
+            code,
+            // keydown
+            () => object.shortcuts[code](true),
+            // keyup
+            () => object.shortcuts[code](false)
+          )
+        })
+      }
+    })
   }
 
   mount(context) {
@@ -113,6 +138,8 @@ class GameManager {
       })
     )
   }
+
+  scheduleProps () {}
 
   playMusicStarting() {
     if (typeof this.startingMusic.loop == 'boolean') {

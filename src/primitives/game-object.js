@@ -8,6 +8,8 @@ class GameObject {
     Object.assign(this, opt)
     this.svg.move(this.x, this.y)
 
+    this.shortcuts = {}
+
     autoBind(this)
     return this
   }

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "auto-bind": "^1.2.0",
+    "keyboardjs": "^2.4.1",
     "progressbar.js": "^1.0.1",
     "svg.js": "^2.6.4",
     "uuid": "^3.2.1"
