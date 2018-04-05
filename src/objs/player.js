@@ -94,19 +94,19 @@ class Player extends EdibleObject {
 
     if (this.x > 1000 - this.size * 100) {
       this.x = 1000 - this.size * 100;
-      this.gameManager.bangWallMusic.play();
+      this.gameManager.playMusicBangWall()
     }
     if (this.y > 500 - this.size * 100) {
       this.y = 500 - this.size * 100;
-      this.gameManager.bangWallMusic.play();
+      this.gameManager.playMusicBangWall()
     }
     if (this.x < 0) {
       this.x = 0;
-      this.gameManager.bangWallMusic.play();
+      this.gameManager.playMusicBangWall()
     }
     if (this.y < 0) {
       this.y = 0;
-      this.gameManager.bangWallMusic.play();
+      this.gameManager.playMusicBangWall()
     }
     this.svg.animate(frameTime).move(this.x, this.y);
   }
