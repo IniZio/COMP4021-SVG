@@ -6,9 +6,6 @@ import Trail from "./trail";
 class Player extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg.node, 200, 250, 100, 100);
-    this.svgObj.x = opt.x;
-    this.svgObj.y = opt.y;
     this.x = opt.x;
     this.y = opt.y;
     this.svg.move(opt.x, opt.y);
@@ -181,7 +178,7 @@ class Player extends EdibleObject {
               harm: 1,
               x: xxx,
               y: yyy,
-              selfDestructTime: 5
+              selfDestructTime: 8
             }));
       }, 500);
       this.size -= 0.01;
@@ -198,7 +195,7 @@ class Player extends EdibleObject {
               harm: 1,
               x: xxx,
               y: yyy,
-              selfDestructTime: 5
+              selfDestructTime: 8
             }));
       }, 500);
       this.size -= 0.01;
@@ -247,17 +244,6 @@ class Player extends EdibleObject {
     this.gameManager.collisions[this.id].map(obj => this.tryEat(obj));
 
     super.update();
-  }
-
-  /**
-   * Get coordinate of center point of the GameObject
-   *
-   * @returns {{x: *, y: *}} The position of the GameObject's center point.
-   */
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

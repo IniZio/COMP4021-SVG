@@ -20,6 +20,10 @@ class EdibleObject extends GameObject {
     this.selfDestructTimer = 0;
   }
 
+  init(opt){
+    super.init(...arguments);
+  }
+
   /**
    * Called when the edible object is eaten by a player.
    * Apply suitable effect to the player,
@@ -38,12 +42,6 @@ class EdibleObject extends GameObject {
     if (this.selfDestructTimer >= this.selfDestructTime) {
       this.gameManager.removeGameObjectById(this.id);
     }
-  }
-
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

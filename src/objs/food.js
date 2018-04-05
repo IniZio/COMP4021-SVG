@@ -4,7 +4,6 @@ import EdibleObject from './edibleObject'
 class Food extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 35, 30);
     this.gain = 10;
     this.size = 0.1;
   }
@@ -12,6 +11,9 @@ class Food extends EdibleObject {
   init () {
     super.init(...arguments)
     this.gameManager.playMusicFoodAppear()
+    this.svg.move(this.x, this.y)
+    this.svg.size(100);
+    this.svg.animate(this.selfDestructTime * 1000).size(0);
   }
 
   /**
@@ -34,12 +36,6 @@ class Food extends EdibleObject {
 
   update(frameTime) {
     super.update(frameTime);
-  }
-
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

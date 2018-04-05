@@ -5,12 +5,6 @@ import EdibleObject from "./edibleObject";
 class Trail extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    if (opt.playerNo = 1)
-    // Must use SVG.get('trail1')
-      this.svgObj = new SVGObject(opt.svg.node, 300, 250, 10, 10);
-    else
-    // Must use SVG.get('trail2')
-      this.svgObj = new SVGObject(opt.svg.node, 700, 250, 10, 10);
     this.harm = opt.harm;
     this.size = 0.1;
   }
@@ -34,12 +28,6 @@ class Trail extends EdibleObject {
 
   update(frameTime) {
     super.update(frameTime);
-  }
-
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

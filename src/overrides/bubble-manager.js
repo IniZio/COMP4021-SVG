@@ -72,7 +72,8 @@ class BubbleManager extends GameManager {
       },
       gameover(manager) {
         manager.playMusicGameOver()
-
+        document.getElementById("winner").innerHTML =
+            'Player ' + ((manager.player1.score > manager.player2.score)? '1' : '2') + ' Won!'
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -82,20 +83,21 @@ class BubbleManager extends GameManager {
   scheduleProps() {
     super.scheduleProps(...arguments)
     const scheduler = setInterval(() => {
-      this.addGameObject(getRandomInt(-1, 2)
-          ? new SpeedBooster({
-            x: getRandomInt(10, 900),
-            y: getRandomInt(10, 400),
-            svg: SVG.get('booster').clone(),
-            selfDestructTime: getRandomInt(10, 30)
-          })
-          : new Food({
-            x: getRandomInt(10, 990),
-            y: getRandomInt(10, 490),
-            svg: SVG.get('food').clone(),
-            selfDestructTime: getRandomInt(10, 30)
-          })
-      )
+      for (var i = 0; i < 4; ++i)
+        this.addGameObject(getRandomInt(-1, 2)
+            ? new Food({
+              x: getRandomInt(10, 990),
+              y: getRandomInt(10, 490),
+              svg: SVG.get('food').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+            : new SpeedBooster({
+              x: getRandomInt(10, 900),
+              y: getRandomInt(10, 400),
+              svg: SVG.get('booster').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+        )
     }, 3000);
     this.$intervals.push(scheduler);
     return scheduler;
