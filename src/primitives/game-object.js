@@ -1,7 +1,9 @@
+import uuid from 'uuid/v4'
 import autoBind from 'auto-bind'
 
 class GameObject {
   constructor(opt) {
+    this.id = uuid()
     const {controls} = opt;
     Object.assign(this, opt)
     this.svg.move(this.x, this.y)

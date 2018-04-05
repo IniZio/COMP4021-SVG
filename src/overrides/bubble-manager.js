@@ -103,7 +103,6 @@ class BubbleManager extends GameManager {
 
   scheduleProps() {
     const scheduler = setInterval(() => {
-      // TODO: use Food class once implemented as aligned with GameObject
       this.addGameObject(getRandomInt(-1, 2)
           ? new SpeedBooster({
             x: getRandomInt(10, 990),

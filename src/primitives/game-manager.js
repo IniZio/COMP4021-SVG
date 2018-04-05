@@ -1,6 +1,16 @@
 import autoBind from 'auto-bind'
 import SVG from 'svg.js'
 
+function didCollide (o1, o2) {
+    var r1 = o1.rbox();    // Bounding box of first object
+    var r2 = o2.rbox();    // Bounding box of second object
+
+  return !(r2.x > r1.x2 ||
+           r2.x2 < r1.x ||
+           r2.y > r1.y2 ||
+           r2.y2 < r1.y)
+}
+
 class GameManager {
   constructor({el, empty}) {
     if (!SVG.supported) {
@@ -80,6 +90,7 @@ class GameManager {
   }
 
   update(dt) {
+    this.scanCollisions()
     this.gameObjects.map(object => object.update && object.update(dt))
   }
 
@@ -89,6 +100,18 @@ class GameManager {
     SVG.get(this.$el).add(gameObj.svg)
     // Note: This makes player to be always on the very top;
     this.player1.svg.front()
+  }
+
+  scanCollisions () {
+    this.collisions = this.gameObjects.reduce((acc, obj) => {acc[obj.id] = []; return acc}, {})
+    this.gameObjects.map((object1, key1) =>
+      this.gameObjects.slice(key1 + 1).map(object2 => {
+        if (didCollide(object1.svg, object2.svg)) {
+          this.collisions[object1.id].push(object2)
+          this.collisions[object2.id].push(object1)
+        }
+      })
+    )
   }
 
   playMusicStarting() {
