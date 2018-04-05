@@ -18,6 +18,8 @@ class BubbleManager extends GameManager {
         })
       },
       game(manager) {
+        manager.playMusicStarting()
+
         const MILLI_SEC = 1000
         const GAME_TIME = 300 * MILLI_SEC
 
@@ -69,7 +71,7 @@ class BubbleManager extends GameManager {
         setTimeout(() => manager.scene !== 'gameover' && manager.reset('gameover'), GAME_TIME)
       },
       gameover(manager) {
-
+        manager.playMusicGameOver()
 
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
@@ -82,8 +84,8 @@ class BubbleManager extends GameManager {
     const scheduler = setInterval(() => {
       this.addGameObject(getRandomInt(-1, 2)
           ? new SpeedBooster({
-            x: getRandomInt(10, 990),
-            y: getRandomInt(10, 490),
+            x: getRandomInt(10, 900),
+            y: getRandomInt(10, 400),
             svg: SVG.get('booster').clone(),
             selfDestructTime: getRandomInt(10, 30)
           })
@@ -94,7 +96,7 @@ class BubbleManager extends GameManager {
             selfDestructTime: getRandomInt(10, 30)
           })
       )
-    }, 5000);
+    }, 3000);
     this.$intervals.push(scheduler);
     return scheduler;
   }

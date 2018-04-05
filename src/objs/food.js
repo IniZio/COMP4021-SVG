@@ -9,6 +9,11 @@ class Food extends EdibleObject {
     this.size = 0.1;
   }
 
+  init () {
+    super.init(...arguments)
+    this.gameManager.playMusicFoodAppear()
+  }
+
   /**
    * Called when the edible object is eaten by a player.
    * Apply suitable effect to the player,
@@ -22,6 +27,7 @@ class Food extends EdibleObject {
     if (player === null) {
       super.eatenBy(null);
     }
+    this.gameManager.playMusicFoodEating()
     player.grow(this.gain);
     this.gameManager.removeGameObjectById(this.id);
   }
