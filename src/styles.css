@@ -5,7 +5,7 @@ g[id$="button"] {
 
 @keyframes color_change{
 	0% {fill: white;}
-	50%{fill: blue;}
+	50%{fill: green;}
 	100%{fill:white;}
 }
 
