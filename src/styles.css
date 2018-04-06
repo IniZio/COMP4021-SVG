@@ -10,6 +10,6 @@ g[id$="button"] {
 g[id$="button"]:hover {
   animation-name: color_change;
   animation-duration: 0.5s;
-  animation-iteration-count: indefinite;
+  animation-iteration-count: infinite;
   animation-direction: alternate;
 }
