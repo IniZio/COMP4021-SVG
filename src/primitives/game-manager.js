@@ -76,6 +76,8 @@ class GameManager {
     this.$intervals.map(clearInterval)
     this.$intervals.length = 0
 
+    this.listeners = {}
+
     // Static template
     this.scene = scene
     const emptyClone = SVG.adopt(document.getElementById(this.scene).cloneNode(true))
