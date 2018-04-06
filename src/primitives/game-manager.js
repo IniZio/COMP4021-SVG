@@ -29,6 +29,7 @@ class GameManager {
     this.$el = el
     this.$generators = {}
     this.$intervals = []
+    this.$timeouts = []
     this.gameObjects = []
     this.listeners = {}
 
@@ -74,6 +75,9 @@ class GameManager {
 
     // Kill schedulers
     this.$intervals.map(clearInterval)
+    this.$intervals.length = 0
+
+    this.$timeouts.map(clearTimeout)
     this.$intervals.length = 0
 
     this.listeners = {}

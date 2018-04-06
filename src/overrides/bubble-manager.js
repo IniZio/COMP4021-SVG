@@ -68,12 +68,14 @@ class BubbleManager extends GameManager {
         }).animate(1)
         manager.scheduleProps()
 
-        setTimeout(() => manager.scene !== 'gameover' && manager.reset('gameover'), GAME_TIME)
+        manager.$timeouts.push(setTimeout(() => manager.scene !== 'gameover' && manager.reset('gameover'), GAME_TIME))
       },
       gameover(manager) {
         manager.playMusicGameOver()
         document.getElementById("winner").innerHTML =
-            'Player ' + ((manager.lastP1Score > manager.lastP2Score) ? '1' : '2') + ' Won!'
+            Math.abs(manager.lastP1Score - manager.lastP2Score) > 1
+            ? 'Player ' + ((manager.lastP1Score > manager.lastP2Score) ? '1' : '2') + ' Won!'
+            : 'Draw!'
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -110,8 +112,8 @@ class BubbleManager extends GameManager {
     if (this.player2 && this.player1.score !== 0)
       this.lastP2Score = this.player2.score;
     if (this.scene === 'game' || this.scene === 'gameover') {
-      if (this.lastP1Score) document.getElementById('score_1').textContent = this.lastP1Score.toString()
-      if (this.lastP2Score) document.getElementById('score_2').textContent = this.lastP2Score.toString()
+      if (this.lastP1Score) document.getElementById('score_1').textContent = Math.max(0, this.lastP1Score).toString()
+      if (this.lastP2Score) document.getElementById('score_2').textContent = Math.max(0, this.lastP2Score).toString()
     }
   }
 }
