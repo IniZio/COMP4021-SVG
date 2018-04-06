@@ -105,7 +105,7 @@ class Player extends EdibleObject {
       this.y = 0;
       this.gameManager.playMusicBangWall()
     }
-    this.svg.animate(frameTime).move(this.x, this.y);
+    this.svg.animate(frameTime, '<>', frameTime / 2).move(this.x, this.y);
   }
 
   clearMove() {
@@ -175,7 +175,7 @@ class Player extends EdibleObject {
         GameManager.addGameObject(
             new Trail({
               svg: SVG.get("trail1").clone().move(xxx, yyy),
-              harm: -2,
+              harm: -2 * this.size,
               x: xxx,
               y: yyy,
               selfDestructTime: 8,
