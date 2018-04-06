@@ -2,10 +2,6 @@ g[id$="button"] {
   cursor: pointer;
 }
 
-@keyframes rotate_away{
-	0% {transform: rotate(0deg);}
-	100%{transform: rotate(360deg);}
-}
 
 @keyframes color_change{
 	0% {fill: white;}
@@ -13,22 +9,10 @@ g[id$="button"] {
 	100%{fill:white;}
 }
 
-svg:active #replay_button,
-svg:active #restart_button,
-svg:active #play_button{
-	animation-name: rotate_away;
-	animation-duration: 1s;
-}
-
-svg #replay_ellipse,
-svg #restart_button,
-svg #play_button{
-	animation: color_change 1s;
-	animation-play-state: paused;
-}
-
 svg:hover #replay_button,
 svg:hover #restart_button,
 svg:hover #play_button{
-	animation-play-state: running;
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
 }
