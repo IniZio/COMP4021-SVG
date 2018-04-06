@@ -9,11 +9,25 @@ g[id$="button"] {
 	100%{fill:white;}
 }
 
-#play_ellipse{
+#play_ellipse,
+#replay_ellipse,
+#restart_ellipse{
 	fill: white;
 }
 
 #play_ellipse:hover{
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
+}
+
+#replay_ellipse:hover{
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
+}
+
+#restart_ellipse:hover{
 	animation-name: color_change;
 	animation-duration:1s;
 	animation-iteration-count: infinite;
