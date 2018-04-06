@@ -145,14 +145,14 @@ class Player extends EdibleObject {
   boostSpeed(speedMultiplier) {
     this.speedMultiplier *= speedMultiplier;
     if (!this.playerNo || this.playerNo === 1) {
-      setTimeout(() => {
+      this.gameManager.$timeouts.push(setTimeout(() => {
         if (this.gameManager.player1) this.gameManager.player1.speedMultiplier /= speedMultiplier;
-      }, 5000);
+      }, 5000));
     }
     else {
-      setTimeout(() => {
+      this.gameManager.$timeouts.push(setTimeout(() => {
         if (this.gameManager.player2) this.gameManager.player2.speedMultiplier /= speedMultiplier;
-      }, 5000);
+      }, 5000));
     }
   }
 
@@ -171,7 +171,7 @@ class Player extends EdibleObject {
       // Player 1
       var xxx = this.x + 50 * this.size;
       var yyy = this.y + 50 * this.size;
-      setTimeout(() => {
+      this.gameManager.$timeouts.push(setTimeout(() => {
         GameManager.addGameObject(
             new Trail({
               svg: SVG.get("trail1").clone().move(xxx, yyy),
@@ -181,7 +181,7 @@ class Player extends EdibleObject {
               selfDestructTime: 8,
               owner: this
             }));
-      }, 500);
+      }, 500));
       this.size -= 0.01;
       this.svg.size(100 * this.size);
     }
@@ -189,7 +189,7 @@ class Player extends EdibleObject {
       // Player 2
       var xxx = this.x + 50 * this.size;
       var yyy = this.y + 50 * this.size;
-      setTimeout(() => {
+      this.gameManager.$timeouts.push(setTimeout(() => {
         GameManager.addGameObject(
             new Trail({
               svg: SVG.get("trail2").clone().move(xxx, yyy),
@@ -199,7 +199,7 @@ class Player extends EdibleObject {
               selfDestructTime: 8,
               owner: this
             }));
-      }, 500);
+      }, 500));
       this.size -= 0.01;
       this.svg.size(100 * this.size);
     }
