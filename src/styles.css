@@ -1,3 +1,15 @@
 g[id$="button"] {
   cursor: pointer;
 }
+
+@keyframes color_change{
+	0% {background-color: white;}
+	100% {background-color: red;}
+}
+
+g[id$="button"]:hover {
+  animation-name: color_change;
+  animation-duration: 0.5s;
+  animation-iteration-count: indefinite;
+  animation-direction: alternate;
+}
