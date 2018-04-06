@@ -1,13 +1,3 @@
 g[id$="button"] {
   cursor: pointer;
 }
-
-@keyframes color_change{
-	0% {fill: white;}
-	50% {fill: blue;}
-	100% {fill: white;}
-}
-
-g[id$="button"]:hover {
-  animation-name: color_change 1s infinite;
-}
