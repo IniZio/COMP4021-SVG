@@ -2,14 +2,14 @@ import autoBind from 'auto-bind'
 import SVG from 'svg.js'
 import keyboard from 'keyboardjs'
 
-function didCollide (o1, o2) {
-    var r1 = o1.rbox();    // Bounding box of first object
-    var r2 = o2.rbox();    // Bounding box of second object
+function didCollide(o1, o2) {
+  var r1 = o1.rbox();    // Bounding box of first object
+  var r2 = o2.rbox();    // Bounding box of second object
 
   return !(r2.x > r1.x2 ||
-           r2.x2 < r1.x ||
-           r2.y > r1.y2 ||
-           r2.y2 < r1.y)
+      r2.x2 < r1.x ||
+      r2.y > r1.y2 ||
+      r2.y2 < r1.y)
 }
 
 class GameManager {
@@ -64,9 +64,19 @@ class GameManager {
       }
     })
 
+    if (scene === 'gameover') {
+      this.removeGameObjectById(this.player1.id)
+      this.removeGameObjectById(this.player2.id)
+      this.player1 = null;
+      this.player2 = null;
+      this.listeners = {};
+    }
+
     // Kill schedulers
     this.$intervals.map(clearInterval)
     this.$intervals.length = 0
+
+    this.listeners = {}
 
     // Static template
     this.scene = scene
@@ -85,11 +95,11 @@ class GameManager {
       if (object.shortcuts) {
         Object.keys(object.shortcuts).map(code => {
           keyboard.bind(
-            code,
-            // keydown
-            () => object.shortcuts[code](true),
-            // keyup
-            () => object.shortcuts[code](false)
+              code,
+              // keydown
+              () => object.shortcuts[code](true),
+              // keyup
+              () => object.shortcuts[code](false)
           )
         })
       }
@@ -125,26 +135,35 @@ class GameManager {
     this.gameObjects.push(gameObj)
     SVG.get(this.$el).add(gameObj.svg)
     // Note: This makes player to be always on the very top;
-    this.player1.svg.front()
   }
 
-  addEventListener (event, callback) {
+  removeGameObjectById(gameObjId) {
+    let gameObj = this.gameObjects.find(obj => obj.id === gameObjId);
+    this.gameObjects = this.gameObjects.filter(obj => obj.id !== gameObjId);
+    if (gameObj && gameObj.svg) gameObj.svg.remove();
+  }
+
+  addEventListener(event, callback) {
     this.listeners[event] = callback
   }
 
-  scanCollisions () {
-    this.collisions = this.gameObjects.reduce((acc, obj) => {acc[obj.id] = []; return acc}, {})
+  scanCollisions() {
+    this.collisions = this.gameObjects.reduce((acc, obj) => {
+      acc[obj.id] = [];
+      return acc
+    }, {})
     this.gameObjects.map((object1, key1) =>
-      this.gameObjects.slice(key1 + 1).map(object2 => {
-        if (didCollide(object1.svg, object2.svg)) {
-          this.collisions[object1.id].push(object2)
-          this.collisions[object2.id].push(object1)
-        }
-      })
+        this.gameObjects.slice(key1 + 1).map(object2 => {
+          if (didCollide(object1.svg, object2.svg)) {
+            this.collisions[object1.id].push(object2)
+            this.collisions[object2.id].push(object1)
+          }
+        })
     )
   }
 
-  scheduleProps () {}
+  scheduleProps() {
+  }
 
   playMusicStarting() {
     if (typeof this.startingMusic.loop == 'boolean') {

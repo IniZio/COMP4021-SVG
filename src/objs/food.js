@@ -1,11 +1,19 @@
 import SVGObject from './SVGObject'
-import Edible from './edibleObject'
+import EdibleObject from './edibleObject'
 
-class Food extends Edible {
+class Food extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 35, 30);
     this.gain = 10;
+    this.size = 0.1;
+  }
+
+  init () {
+    super.init(...arguments)
+    this.gameManager.playMusicFoodAppear()
+    this.svg.move(this.x, this.y)
+    this.svg.size(100);
+    this.svg.animate(this.selfDestructTime * 1000).size(0);
   }
 
   /**
@@ -18,20 +26,19 @@ class Food extends Edible {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
+    if (player === null) {
+      super.eatenBy(null);
+    }
+    this.gameManager.playMusicFoodEating()
     player.grow(this.gain);
+    this.gameManager.removeGameObjectById(this.id);
   }
 
   update(frameTime) {
     super.update(frameTime);
   }
 
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
-  }
-
-  static get TypeName() {
+  get TypeName() {
     return 'Food';
   }
 }

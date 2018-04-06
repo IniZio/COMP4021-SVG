@@ -1,11 +1,19 @@
 import SVGObject from './SVGObject'
-import Edible from './edibleObject'
+import EdibleObject from './edibleObject'
 
-class SpeedBooster extends Edible {
+class SpeedBooster extends EdibleObject {
   constructor(opt) {
     super(...arguments);
-    this.svgObj = new SVGObject(opt.svg.node, 0, 0, 20, 30);
     this.speedMultiplier = 1.5;
+    this.size = 0.1;
+  }
+
+  init () {
+    super.init(...arguments)
+    this.gameManager.playMusicFoodAppear()
+    this.svg.move(this.x, this.y)
+    this.svg.size(100);
+    this.svg.animate(this.selfDestructTime * 1000).size(0);
   }
 
   /**
@@ -18,18 +26,17 @@ class SpeedBooster extends Edible {
    * @param player Player object eating this EdibleObject object.
    */
   eatenBy(player) {
+    if (player === null)
+    {
+      super.eatenBy(null);
+    }
+    this.gameManager.playMusicBooster()
     player.boostSpeed(this.speedMultiplier);
-    this.svgObj.domNode.remove();
+    this.gameManager.removeGameObjectById(this.id);
   }
 
   update(frameTime) {
     super.update(frameTime);
-  }
-
-  get center() {
-    if (this.svgObj)
-      return this.svgObj.center;
-    return null;
   }
 
   get TypeName() {

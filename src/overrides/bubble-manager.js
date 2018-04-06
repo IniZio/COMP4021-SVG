@@ -18,13 +18,35 @@ class BubbleManager extends GameManager {
         })
       },
       game(manager) {
-        const MILLI_SEC = 1000
-        const GAME_TIME = 3 * MILLI_SEC
+        manager.playMusicStarting()
 
-        manager.player1 = new Player({x: 0, y: 10, svg: SVG.get('main1').clone()})
+        const MILLI_SEC = 1000
+        const GAME_TIME = 60 * MILLI_SEC
+
+        manager.player1 = new Player({
+          x: 50, y: 100, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 0.2
+        })
         manager.addGameObject(manager.player1)
-        manager.addEventListener('player1.putTrail', function(){
-          console.log('going to put trail')
+        manager.addEventListener('player1.putTrail', function () {
+          // console.log('Player1 going to put trail')
+          manager.player1.putTrail();
+        })
+        manager.addEventListener('player1.die', function () {
+          // TODO Game Over
+          manager.scene !== 'gameover' && manager.reset('gameover')
+        })
+
+        manager.player2 = new Player({
+          x: 600, y: 100, svg: SVG.get('main2').clone(), playerNo: 2, putDownTrailTime: 0.2
+        })
+        manager.addGameObject(manager.player2)
+        manager.addEventListener('player2.putTrail', function () {
+          // console.log('Player2 going to put trail')
+          manager.player2.putTrail();
+        })
+        manager.addEventListener('player2.die', function () {
+          // TODO Game Over
+          manager.scene !== 'gameover' && manager.reset('gameover')
         })
 
         new ProgressBar.Line('#timer_bar', {
@@ -49,8 +71,9 @@ class BubbleManager extends GameManager {
         setTimeout(() => manager.scene !== 'gameover' && manager.reset('gameover'), GAME_TIME)
       },
       gameover(manager) {
-
-
+        manager.playMusicGameOver()
+        document.getElementById("winner").innerHTML =
+            'Player ' + ((manager.lastP1Score > manager.lastP2Score) ? '1' : '2') + ' Won!'
         SVG.get('restart_button').click(() => manager.reset())
         SVG.get('replay_button').click(() => manager.reset('game'))
       }
@@ -60,30 +83,35 @@ class BubbleManager extends GameManager {
   scheduleProps() {
     super.scheduleProps(...arguments)
     const scheduler = setInterval(() => {
-      this.addGameObject(getRandomInt(-1, 2)
-          ? new SpeedBooster({
-            x: getRandomInt(10, 990),
-            y: getRandomInt(10, 490),
-            svg: SVG.get('booster').clone(),
-            selfDestructTime: getRandomInt(2000, 10000)
-          })
-          : new Food({
-            x: getRandomInt(10, 990),
-            y: getRandomInt(10, 490),
-            svg: SVG.get('food').clone(),
-            selfDestructTime: getRandomInt(2000, 10000)
-          })
-      )
+      for (var i = 0; i < 4; ++i)
+        this.addGameObject(getRandomInt(-1, 2)
+            ? new Food({
+              x: getRandomInt(10, 990),
+              y: getRandomInt(10, 490),
+              svg: SVG.get('food').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+            : new SpeedBooster({
+              x: getRandomInt(10, 900),
+              y: getRandomInt(10, 400),
+              svg: SVG.get('booster').clone(),
+              selfDestructTime: getRandomInt(10, 30)
+            })
+        )
     }, 3000);
     this.$intervals.push(scheduler);
     return scheduler;
   }
 
-  update () {
+  update() {
     super.update(...arguments)
+    if (this.player1 && this.player1.score !== 0)
+      this.lastP1Score = this.player1.score;
+    if (this.player2 && this.player1.score !== 0)
+      this.lastP2Score = this.player2.score;
     if (this.scene === 'game' || this.scene === 'gameover') {
-      if (this.player1) document.getElementById('score_1').textContent = this.player1.score
-      if (this.player2) document.getElementById('score_2').textContent = this.player2.score
+      if (this.lastP1Score) document.getElementById('score_1').textContent = this.lastP1Score.toString()
+      if (this.lastP2Score) document.getElementById('score_2').textContent = this.lastP2Score.toString()
     }
   }
 }
