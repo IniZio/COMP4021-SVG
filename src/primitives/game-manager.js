@@ -88,26 +88,29 @@ class GameManager {
     emptyClone.attr('id', SVG.get(this.$el).attr('id'))
 
     // Replace existing scene with new one
-    SVG.get(this.$el).remove()
-    SVG.get(this.$context).add(emptyClone)
+    SVG.get(this.$el).animate(1000, '<>').attr({ opacity: 0 })
+    setTimeout(() => {
+      SVG.get(this.$el).remove()
+      SVG.get(this.$context).add(emptyClone)
 
-    // Dynamic generator
-    this.$generators[this.scene](this)
+      // Dynamic generator
+      this.$generators[this.scene](this)
 
-    // Bind new shortcuts
-    this.gameObjects.map(object => {
-      if (object.shortcuts) {
-        Object.keys(object.shortcuts).map(code => {
-          keyboard.bind(
-              code,
-              // keydown
-              () => object.shortcuts[code](true),
-              // keyup
-              () => object.shortcuts[code](false)
-          )
-        })
-      }
-    })
+      // Bind new shortcuts
+      this.gameObjects.map(object => {
+        if (object.shortcuts) {
+          Object.keys(object.shortcuts).map(code => {
+            keyboard.bind(
+                code,
+                // keydown
+                () => object.shortcuts[code](true),
+                // keyup
+                () => object.shortcuts[code](false)
+            )
+          })
+        }
+      })
+    }, 1000)
   }
 
   mount(context) {
