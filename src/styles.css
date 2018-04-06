@@ -13,9 +13,9 @@ g[id$="button"] {
 	100%{fill:white;}
 }
 
-svg:click #replay_button,
-svg:click #restart_button,
-svg:click #play_button{
+svg:active #replay_button,
+svg:active #restart_button,
+svg:active #play_button{
 	animation-name: rotate_away;
 	animation-duration: 1s;
 }
