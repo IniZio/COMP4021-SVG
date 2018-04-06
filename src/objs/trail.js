@@ -6,6 +6,7 @@ class Trail extends EdibleObject {
   constructor(opt) {
     super(...arguments);
     this.harm = opt.harm;
+    this.owner = opt.owner
     this.size = 0.1;
   }
 
@@ -22,6 +23,7 @@ class Trail extends EdibleObject {
     if (player === null){
       super.eatenBy(null);
     }
+    if (this.owner == player) return
     player.grow(this.harm);
     this.gameManager.removeGameObjectById(this.id);
   }

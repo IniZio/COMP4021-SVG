@@ -145,13 +145,13 @@ class Player extends EdibleObject {
   boostSpeed(speedMultiplier) {
     this.speedMultiplier *= speedMultiplier;
     if (!this.playerNo || this.playerNo === 1) {
-      setTimeout(function () {
-        GameManager.player1.speedMultiplier /= speedMultiplier;
+      setTimeout(() => {
+        if (this.gameManager.player1) this.gameManager.player1.speedMultiplier /= speedMultiplier;
       }, 5000);
     }
     else {
-      setTimeout(function () {
-        GameManager.player2.speedMultiplier /= speedMultiplier;
+      setTimeout(() => {
+        if (this.gameManager.player2) this.gameManager.player2.speedMultiplier /= speedMultiplier;
       }, 5000);
     }
   }
@@ -171,14 +171,15 @@ class Player extends EdibleObject {
       // Player 1
       var xxx = this.x + 50 * this.size;
       var yyy = this.y + 50 * this.size;
-      setTimeout(function () {
+      setTimeout(() => {
         GameManager.addGameObject(
             new Trail({
               svg: SVG.get("trail1").clone().move(xxx, yyy),
-              harm: 1,
+              harm: -2,
               x: xxx,
               y: yyy,
-              selfDestructTime: 8
+              selfDestructTime: 8,
+              owner: this
             }));
       }, 500);
       this.size -= 0.01;
@@ -188,14 +189,15 @@ class Player extends EdibleObject {
       // Player 2
       var xxx = this.x + 50 * this.size;
       var yyy = this.y + 50 * this.size;
-      setTimeout(function () {
+      setTimeout(() => {
         GameManager.addGameObject(
             new Trail({
               svg: SVG.get("trail2").clone().move(xxx, yyy),
-              harm: 1,
+              harm: -2,
               x: xxx,
               y: yyy,
-              selfDestructTime: 8
+              selfDestructTime: 8,
+              owner: this
             }));
       }, 500);
       this.size -= 0.01;
@@ -204,8 +206,8 @@ class Player extends EdibleObject {
   }
 
   update(frameTime) {
-
-    if (this.size <= 0)
+    try {
+      if (this.size <= 0)
       if (!this.playerNo || this.playerNo === 1) {
         this.emit('player1.die')
       }
@@ -213,26 +215,26 @@ class Player extends EdibleObject {
         this.emit('player2.die')
       }
 
-    this.svg.front();
-
-    if (!this.playerNo) {
       this.svg.front();
-    }
-    else if (this.playerNo === 1) {
-      if (this.gameManager.player2.size < this.size) {
-        this.svg.front();
-      }
-      else this.gameManager.player2.svg.front()
-    }
-    else if (this.playerNo === 2) {
-      if (this.gameManager.player1.size < this.size) {
-        this.svg.front();
-      }
-      else this.gameManager.player1.svg.front()
-    }
 
-    this.putDownTrailTimer += frameTime;
-    if (this.gameManager.scene !== 'gameover')
+      if (!this.playerNo) {
+        this.svg.front();
+      }
+      else if (this.playerNo === 1) {
+        if (this.gameManager.player2.size < this.size) {
+          this.svg.front();
+        }
+        else this.gameManager.player2.svg.front()
+      }
+      else if (this.playerNo === 2) {
+        if (this.gameManager.player1.size < this.size) {
+          this.svg.front();
+        }
+        else this.gameManager.player1.svg.front()
+      }
+
+      this.putDownTrailTimer += frameTime;
+      if (this.gameManager.scene !== 'gameover')
       if (this.putDownTrailTimer >= this.putDownTrailTime) {
         this.putDownTrailTimer = 0;
         //TODO put down trail
@@ -243,10 +245,11 @@ class Player extends EdibleObject {
           this.emit('player2.putTrail')
         }
       }
-    this.move(frameTime);
-    this.gameManager.collisions[this.id].map(obj => this.tryEat(obj));
+      this.move(frameTime);
+      this.gameManager.collisions[this.id].map(obj => this.tryEat(obj));
+    } catch (e) {}
+    super.update(...arguments);
 
-    super.update();
   }
 
   get TypeName() {
