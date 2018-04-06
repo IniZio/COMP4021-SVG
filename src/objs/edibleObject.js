@@ -19,10 +19,10 @@ class EdibleObject extends GameObject {
     else this.selfDestructTime = 0xFFFFFFFFFFFFFFFF;
     this.selfDestructTimer = 0;
     if (this.selfDestructTimer > 0) {
-      setTimeout(() => {
+      this.gameManager.$timeouts.push(setTimeout(() => {
         this.svg.remove()
         this.gameManager.removeGameObjectById(this.id)
-      }, this.selfDestructTime * 1000)
+      }, this.selfDestructTime * 1000))
     }
   }
 
