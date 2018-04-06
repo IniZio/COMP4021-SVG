@@ -21,14 +21,14 @@ class BubbleManager extends GameManager {
         manager.playMusicStarting()
 
         const MILLI_SEC = 1000
-        const GAME_TIME = 300 * MILLI_SEC
+        const GAME_TIME = 60 * MILLI_SEC
 
         manager.player1 = new Player({
           x: 50, y: 100, svg: SVG.get('main1').clone(), playerNo: 1, putDownTrailTime: 0.2
         })
         manager.addGameObject(manager.player1)
         manager.addEventListener('player1.putTrail', function () {
-          console.log('Player1 going to put trail')
+          // console.log('Player1 going to put trail')
           manager.player1.putTrail();
         })
         manager.addEventListener('player1.die', function () {
@@ -41,7 +41,7 @@ class BubbleManager extends GameManager {
         })
         manager.addGameObject(manager.player2)
         manager.addEventListener('player2.putTrail', function () {
-          console.log('Player2 going to put trail')
+          // console.log('Player2 going to put trail')
           manager.player2.putTrail();
         })
         manager.addEventListener('player2.die', function () {
