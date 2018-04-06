@@ -142,7 +142,7 @@
               </g>
           </g>
           <g id="play_button">
-              <ellipse fill="white" opacity="0.5" ry="40" rx="80" cx="500" cy="430" />
+              <ellipse id="play_ellipse" fill="white" opacity="0.5" ry="40" rx="80" cx="500" cy="430" />
               <text text-anchor="middle" fill="black" opacity="0.8" x="500" y="435" font-size="23" font-family="Chicle serif" font-weight="bold">Let's Play!</text>
           </g>
       </svg>
@@ -188,22 +188,22 @@
 			<rect id="gameover_screen" height="500" width="1000" rx="10" ry="10" fill="yellow" fill-opacity="0.4" stroke="black" stroke-width="3"/>
 			<text id="game_over_text" text-anchor="middle" fill="#000000" x="500" y="130" font-size="75" font-family="Chicle serif" font-weight="bolder">Game Over</text>
 			<g> <!-- Score 1 -->
-				<text stroke="#000000" text-anchor="middle" fill="#000000" x="360" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1 Score</text>
-				<rect height="40" width="80" x="320" y="230" rx="20" ry="20" fill="#d1fcf8" />
-				<text id="score_1" text-anchor="middle" fill="#000000" x="360" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="360" y="240" font-size="20" font-family="Chicle serif" font-weight="bold">Player 1 Score</text>
+				<rect height="40" width="80" x="320" y="250" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_1" text-anchor="middle" fill="#000000" x="360" y="275" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
 			</g>
 			<g> <!-- Score 2 -->
-				<text stroke="#000000" text-anchor="middle" fill="#000000" x="640" y="220" font-size="20" font-family="Chicle serif" font-weight="bold">Player 2 Score</text>
-				<rect height="40" width="80" x="600" y="230" rx="20" ry="20" fill="#d1fcf8" />
-				<text id="score_2" text-anchor="middle" fill="#000000" x="640" y="255" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
+				<text stroke="#000000" text-anchor="middle" fill="#000000" x="640" y="240" font-size="20" font-family="Chicle serif" font-weight="bold">Player 2 Score</text>
+				<rect height="40" width="80" x="600" y="250" rx="20" ry="20" fill="#d1fcf8" />
+				<text id="score_2" text-anchor="middle" fill="#000000" x="640" y="275" font-size="20" font-family="Chicle serif" font-weight="bolder">0</text>
 			</g>
 			<g id="restart_button">
-			  <ellipse  fill="white" opacity="0.5" ry="30" rx="72" cx="360" cy="350" />
-			  <text text-anchor="middle" fill="#000000" x="360" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Back to Main</text>
+			  <ellipse id="restart_ellipse" fill="white" opacity="0.5" ry="40" rx="80" cx="360" cy="370">
+			  <text text-anchor="middle" fill="#000000" x="360" y="375" font-size="23" font-family="Chicle serif" font-weight="bold">Back to Main</text>
 			</g>
 			<g id="replay_button">
-			  <ellipse fill="white" opacity="0.5" ry="30" rx="72" cx="640" cy="350" />
-			  <text text-anchor="middle" fill="#000000" x="640" y="355" font-size="20" font-family="Chicle serif" font-weight="bold">Play again</text>
+			  <ellipse id="replay_ellipse" fill="white" opacity="0.5" ry="40" rx="80" cx="640" cy="370">
+			  <text text-anchor="middle" fill="#000000" x="640" y="375" font-size="23" font-family="Chicle serif" font-weight="bold">Play again</text>
 			</g>
 			<text id="winner" text-anchor="middle" fill="#000000" x="500" y="190" font-size="30" font-family="Chicle serif" font-weight="bolder">
 				Player Won!

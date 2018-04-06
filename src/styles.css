@@ -2,14 +2,33 @@ g[id$="button"] {
   cursor: pointer;
 }
 
+
 @keyframes color_change{
-	0% {background-color: white;}
-	100% {background-color: red;}
+	0% {fill: white;}
+	50%{fill: green;}
+	100%{fill:white;}
 }
 
-g[id$="button"]:hover {
-  animation-name: color_change;
-  animation-duration: 0.5s;
-  animation-iteration-count: indefinite;
-  animation-direction: alternate;
+#play_ellipse,
+#replay_ellipse,
+#restart_ellipse{
+	fill: white;
+}
+
+#play_ellipse:hover{
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
+}
+
+#replay_ellipse:hover{
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
+}
+
+#restart_ellipse:hover{
+	animation-name: color_change;
+	animation-duration:1s;
+	animation-iteration-count: infinite;
 }
