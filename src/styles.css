@@ -9,9 +9,11 @@ g[id$="button"] {
 	100%{fill:white;}
 }
 
-svg:hover #replay_button,
-svg:hover #restart_button,
-svg:hover #play_button{
+#play_ellipse{
+	fill: white;
+}
+
+#play_ellipse:hover{
 	animation-name: color_change;
 	animation-duration:1s;
 	animation-iteration-count: infinite;
