@@ -3,8 +3,8 @@ g[id$="button"] {
 }
 
 @keyframes color_change{
-	0% {background-color: white;}
-	100% {background-color: red;}
+	0% {fill: white;}
+	100% {fill: blue;}
 }
 
 g[id$="button"]:hover {
