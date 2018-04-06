@@ -4,12 +4,10 @@ g[id$="button"] {
 
 @keyframes color_change{
 	0% {fill: white;}
-	100% {fill: blue;}
+	50% {fill: blue;}
+	100% {fill: white;}
 }
 
 g[id$="button"]:hover {
-  animation-name: color_change;
-  animation-duration: 0.5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  animation-name: color_change 1s infinite;
 }
